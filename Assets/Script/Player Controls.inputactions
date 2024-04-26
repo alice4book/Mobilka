@@ -1,0 +1,54 @@
+{
+    "name": "Player Controls",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "52e66f12-814b-4c7b-8e7a-66ccb77d4e8b",
+            "actions": [
+                {
+                    "name": "Swipe",
+                    "type": "Button",
+                    "id": "f98ea189-b0f6-45e6-9dbc-98aadc3d51cd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Tap",
+                    "type": "Button",
+                    "id": "e5e07743-83cb-4eff-b810-3fa444c0c781",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3962a070-068a-4d43-8791-3b4d71bae20b",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Swipe",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2b2d98e9-690f-4445-a7dd-521b610da0a3",
+                    "path": "<Touchscreen>/primaryTouch/tap",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
