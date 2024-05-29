@@ -12,7 +12,7 @@ public class TimerController : MonoBehaviour
     public float timeRemaining;
     public float startingTime = 5;
 
-    public GameOverMenu gameOverMenu;
+    //public GameOverMenu gameOverMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,7 @@ public class TimerController : MonoBehaviour
             timeRemaining -= Time.deltaTime;
             DisplayTime(timeRemaining);
         } else {
-            gameOverMenu.GameOverMenuObj.SetActive(true);
+            //gameOverMenu.GameOverMenuObj.SetActive(true);
         }
     }
 

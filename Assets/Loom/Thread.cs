@@ -27,14 +27,15 @@ public class Thread : MonoBehaviour
     void OnMouseDown() {
         //if(loom.colors.Count > 20) {
             score = int.Parse(textMesh.text);
-            Color tmpLineColor = loom.lines[0].GetComponent<SpriteRenderer>().color;
+            Color tmpLineColor = loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color;
             Vector3 lineColor = new Vector3(tmpLineColor.r, tmpLineColor.g, tmpLineColor.b);
             Vector3 threadColor = new Vector3(color.r,color.g,color.b);
             if(lineColor == threadColor) {
                 score++;
                 timerController.AddTime();
-                loom.lines[0].GetComponent<SpriteRenderer>().color = color;
-                loom.colors.RemoveAt(0);
+                loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color = color;
+                loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color = color;
+                loom.colorPairs.RemoveAt(0);
                 loom.assignLineColors();
             } else {
                 score = 0;
