@@ -17,14 +17,17 @@ public class SwipeDetection : MonoBehaviour
     #endregion
 
 
+
     private void Awake()
     {
+        Debug.Log("SwipeDetection");
         _mainCamera = Camera.main;
         _minSwipeLenght = 0.5f;
     }
 
     private Vector3 GetTouchPosition()
-    {
+    {   
+        Debug.Log("Touch position");
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0); // Assuming the first touch
@@ -39,6 +42,7 @@ public class SwipeDetection : MonoBehaviour
         if (ctx.started)
         {
             _start = GetTouchPosition();
+            Debug.Log("start");
         }
         else if (ctx.canceled)
         {
@@ -67,7 +71,7 @@ public class SwipeDetection : MonoBehaviour
         }
         else
         {
-            // Ruch w górê lub w dó³
+            // Ruch w gï¿½rï¿½ lub w dï¿½
             if (_swipeVector.y > 0)
             {
                 //Up

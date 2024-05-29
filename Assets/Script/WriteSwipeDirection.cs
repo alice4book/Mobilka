@@ -25,15 +25,19 @@ public class WriteSwipeDirection : MonoBehaviour
         switch (value)
         {
             case 1:
+                Debug.Log("R");
                 direction = "Right";
                 break;
             case 2:
+                Debug.Log("L");
                 direction = "Left";
                 break;
             case 3:
+                Debug.Log("U");
                 direction = "Up";
                 break;
             case 4:
+                Debug.Log("D");
                 direction = "Down";
                 break;
         }
