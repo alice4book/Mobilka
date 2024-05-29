@@ -239,6 +239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 610251738}
+  randomnum: 0
+  mainpanel: {fileID: 610251740}
 --- !u!65 &493661300
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -518,7 +520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ui: {fileID: 1007999921}
   score: 0
-  colorfalg: 0
+  colorflag: 1
 --- !u!1 &1007999919
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,6 +775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 610251738}
+  mainpanel: {fileID: 610251740}
 --- !u!1 &1757875381
 GameObject:
   m_ObjectHideFlags: 0
