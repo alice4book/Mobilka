@@ -9,7 +9,8 @@ public class Loom : MonoBehaviour
     public GameObject parentOfLines;
 
     [SerializeField] public List<GameObject> lineSpawnSpots;
-    public GameObject newLineSpawnSpot;
+    public GameObject newLineSpawnSpotLeft;
+    public GameObject newLineSpawnSpotRight;
 
 
     public List<LoomLine> lines;
@@ -153,7 +154,14 @@ public class Loom : MonoBehaviour
 
     void SpawnLine()
     {
-        LoomLine tmpLoomLine = Instantiate(loomLine, newLineSpawnSpot.transform.position, newLineSpawnSpot.transform.rotation, parentOfLines.transform);
+
+        LoomLine tmpLoomLine;
+        if(lineNr % 2 == 0) {
+            tmpLoomLine = Instantiate(loomLine, newLineSpawnSpotLeft.transform.position, newLineSpawnSpotLeft.transform.rotation, parentOfLines.transform);
+        } else {
+            tmpLoomLine = Instantiate(loomLine, newLineSpawnSpotRight.transform.position, newLineSpawnSpotRight.transform.rotation, parentOfLines.transform);
+        }
+
         lineNr++;
         //Debug.Log(lineNr);
         tmpLoomLine.lineLeft.GetComponent<SpriteRenderer>().color = colorPairs[lineNr].colourLeft;
