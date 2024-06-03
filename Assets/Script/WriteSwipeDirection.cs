@@ -6,21 +6,25 @@ using UnityEngine;
 
 public class WriteSwipeDirection : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI[] textMeshes = new TextMeshProUGUI[2];
 
-    [SerializeField] private TextMeshProUGUI textMesh;
     private void Awake()
     {
-        textMesh = GetComponent<TextMeshProUGUI>();
+        for (int i = 0; i < textMeshes.Length; i++)
+        {
+            //textMeshes[i] = transform.GetChild(i).GetComponent<TextMeshProUGUI>();
+        }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         SwipeDetection.OnSwipe += HandleSwipeDirection;
     }
 
-    private void HandleSwipeDirection(int value)
+    private void HandleSwipeDirection(int swipeIndex, int value)
     {
+        if (swipeIndex < 0 || swipeIndex >= textMeshes.Length) return;
+
         string direction = "";
         switch (value)
         {
@@ -41,6 +45,6 @@ public class WriteSwipeDirection : MonoBehaviour
                 direction = "Down";
                 break;
         }
-        textMesh.text = direction;
+        textMeshes[swipeIndex].text = direction;
     }
 }

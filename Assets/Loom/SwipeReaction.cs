@@ -12,68 +12,103 @@ public class SwipeReaction : MonoBehaviour
 
     int score;
     [SerializeField] private TextMeshProUGUI textMesh;
-    // Start is called before the first frame update
+    private bool[] correctSwipe;
+    private float swipeDelay = 0.5f;
+    private Coroutine swipeCoroutine;
+
     void Start()
     {
-        //Debug.Log("SwipeReaction");
         score = 0;
+        correctSwipe = new bool[2] { false, false };
         SwipeDetection.OnSwipe += HandleSwipeDirectionn;
     }
 
-    private void HandleSwipeDirectionn(int value)
+    private void HandleSwipeDirectionn(int swipeIndex, int value)
     {
-        //string direction = "";
-        switch (value)
+        Color lineLeftColor = loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color;
+        Color lineRightColor = loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color;
+        Vector3 leftColorVec = new Vector3(colorLeft.r, colorLeft.g, colorLeft.b);
+        Vector3 rightColorVec = new Vector3(colorRight.r, colorRight.g, colorRight.b);
+
+        Vector3 currentLeftColorVec = new Vector3(lineLeftColor.r, lineLeftColor.g, lineLeftColor.b);
+        Vector3 currentRightColorVec = new Vector3(lineRightColor.r, lineRightColor.g, lineRightColor.b);
+
+        if (currentLeftColorVec == currentRightColorVec)
         {
-            case 1:
-                //direction = "Right";
-                Vector3 threadColorL = new Vector3(colorLeft.r,colorLeft.g,colorLeft.b);
-                MoveLoomLine(threadColorL, colorLeft);
-                break;
-            case 2:
-                //direction = "Left";
-                Vector3 threadColorR = new Vector3(colorRight.r,colorRight.g,colorRight.b);
-                MoveLoomLine(threadColorR, colorRight);
-                break;
-            case 3:
-                //direction = "Up";
-                break;
-            case 4:
-                //direction = "Down";
-                break;
-        }
-
-        //textMesh.text = direction;
-    }
-
-    void MoveLoomLine(Vector3 threadColor, Color color) {
-        //if(loom.colors.Count > 20) {
-            Color tmpLineColor = loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color;
-            Vector3 lineColor = new Vector3(tmpLineColor.r, tmpLineColor.g, tmpLineColor.b);
-            //Vector3 threadColor = new Vector3(color.r,color.g,color.b);
-
-            Color prevColL = loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color;
-            Color prevColR = loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color;
-
-            if(lineColor == threadColor) {
-                score++;
-                //Debug.Log("score++");
-                timerController.AddTime();
-                loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color = new Color(prevColL.r, prevColL.g, prevColL.b, 1.0f);
-                loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color = new Color(prevColR.r, prevColR.g, prevColR.b, 1.0f);
-                //loom.colorPairs.RemoveAt(0);
-                //loom.assignLineColors();
-                loom.MoveLines();
-            } else 
+            // Single swipe needed
+            if ((value == 1 && currentLeftColorVec == leftColorVec) || (value == 2 && currentLeftColorVec == rightColorVec))
             {
-                score = 0;
-                timerController.DeleteTime();
-                loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color = new Color(prevColL.r, prevColL.g, prevColL.b, 0.75f);
-                loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color = new Color(prevColR.r, prevColR.g, prevColR.b, 0.75f);
-                loom.lines[0].WrongMove();
+                // Correct single swipe
+                ProcessCorrectSwipe();
             }
-            textMesh.text = score.ToString();
-        //}  
+            else
+            {
+                // Incorrect swipe
+                ProcessIncorrectSwipe();
+            }
+        }
+        else
+        {
+            // Double swipe needed
+            if (value == 1 && currentLeftColorVec == leftColorVec)
+            {
+                correctSwipe[0] = true;
+            }
+            else if (value == 2 && currentRightColorVec == rightColorVec)
+            {
+                correctSwipe[1] = true;
+            }
+
+            if (correctSwipe[0] && correctSwipe[1])
+            {
+                // Both swipes are correct
+                ProcessCorrectSwipe();
+                ResetCorrectSwipes();
+            }
+            else
+            {
+                if (swipeCoroutine != null)
+                {
+                    StopCoroutine(swipeCoroutine);
+                }
+                swipeCoroutine = StartCoroutine(ResetCorrectSwipesAfterDelay(swipeDelay));
+            }
+        }
     }
 
+    IEnumerator ResetCorrectSwipesAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        ResetCorrectSwipes();
+    }
+
+    void ResetCorrectSwipes()
+    {
+        correctSwipe[0] = false;
+        correctSwipe[1] = false;
+    }
+
+    void ProcessCorrectSwipe()
+    {
+        score++;
+        timerController.AddTime();
+        Color lineLeftColor = loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color;
+        Color lineRightColor = loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color;
+        loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color = new Color(lineLeftColor.r, lineLeftColor.g, lineLeftColor.b, 1.0f);
+        loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color = new Color(lineRightColor.r, lineRightColor.g, lineRightColor.b, 1.0f);
+        loom.MoveLines();
+        textMesh.text = score.ToString();
+    }
+
+    void ProcessIncorrectSwipe()
+    {
+        score = 0;
+        timerController.DeleteTime();
+        Color lineLeftColor = loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color;
+        Color lineRightColor = loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color;
+        loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color = new Color(lineLeftColor.r, lineLeftColor.g, lineLeftColor.b, 0.75f);
+        loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color = new Color(lineRightColor.r, lineRightColor.g, lineRightColor.b, 0.75f);
+        loom.lines[0].WrongMove();
+        textMesh.text = score.ToString();
+    }
 }
