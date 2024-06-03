@@ -51,12 +51,16 @@ public class SwipeReaction : MonoBehaviour
             Color tmpLineColor = loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color;
             Vector3 lineColor = new Vector3(tmpLineColor.r, tmpLineColor.g, tmpLineColor.b);
             //Vector3 threadColor = new Vector3(color.r,color.g,color.b);
+
+            Color prevColL = loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color;
+            Color prevColR = loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color;
+
             if(lineColor == threadColor) {
                 score++;
                 //Debug.Log("score++");
                 timerController.AddTime();
-                //loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color = color;
-                //loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color = color;
+                loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color = new Color(prevColL.r, prevColL.g, prevColL.b, 1.0f);
+                loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color = new Color(prevColR.r, prevColR.g, prevColR.b, 1.0f);
                 //loom.colorPairs.RemoveAt(0);
                 //loom.assignLineColors();
                 loom.MoveLines();
@@ -64,6 +68,9 @@ public class SwipeReaction : MonoBehaviour
             {
                 score = 0;
                 timerController.DeleteTime();
+                loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color = new Color(prevColL.r, prevColL.g, prevColL.b, 0.75f);
+                loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color = new Color(prevColR.r, prevColR.g, prevColR.b, 0.75f);
+                loom.lines[0].WrongMove();
             }
             textMesh.text = score.ToString();
         //}  
