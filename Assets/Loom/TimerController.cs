@@ -46,4 +46,13 @@ public class TimerController : MonoBehaviour
             timeRemaining = startingTime;
         }
     }
+
+        public void DeleteTime() 
+    {
+        //Debug.Log("AddTime");
+        timeRemaining -= 2;
+        if(timeRemaining <= 0) {
+            timeRemaining = 0;
+        }
+    }
 }

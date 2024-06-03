@@ -4,20 +4,39 @@ using UnityEngine;
 
 public class Loom : MonoBehaviour
 {
-    [SerializeField] public List<LoomLine> lines;
+    //[SerializeField] public List<LoomLine> lines;
+    public LoomLine loomLine;
+    public GameObject parentOfLines;
+
+    [SerializeField] public List<GameObject> lineSpawnSpots;
+    public GameObject newLineSpawnSpot;
+
+
+    public List<LoomLine> lines;
     //public List<Color> colors;
     public List<ColorPair> colorPairs;
     
     [SerializeField] Color colorLeft;
     [SerializeField] Color colorRight;
 
+    //lerp
+    public float moveDistance = 0.5f;
+    public float moveDuration = 0.2f;
+    private int lineNr = 0;
+
+    public List<LoomLine> linesToDestroy;
+
+    bool isMoving = false;
+
     // Start is called before the first frame update
     void Start()
     {
         //colors = new List<Color>();
         colorPairs = new List<ColorPair>();
+        linesToDestroy = new List<LoomLine>();
 
         //GenerateColorList();
+        GenerateLines();
         GenerateColorPairList();
         assignLineColors();
     }
@@ -28,33 +47,16 @@ public class Loom : MonoBehaviour
         
     }
 
-    /*
-    void GenerateColorList() {
-        Color tmpColor = new Color(1.0f,0.0f,0.0f,0.5f);
-        //Color redColor = new Color(1.0f,0.0f,0.0f,0.5f);
-        //Color blueColor = new Color(0.0f,0.0f,1.0f,0.5f);
-        for(int i = 0; i < 1000; i++) {
-            int random = Random.Range(0,2);
-            switch(random) 
-            {
-                case 0:
-                    //tmpColor = redColor;
-                    tmpColor = colorLeft;
-                    break;
-                case 1:
-                    //tmpColor = blueColor;
-                    tmpColor = colorRight;
-                    break;
-                default:
-                    //tmpColor = redColor;
-                    tmpColor = colorLeft;
-                    break;
-            }
-
-            colors.Add(tmpColor);
+    void GenerateLines()
+    {
+        for(int i = 0; i < lineSpawnSpots.Count; i++)
+        {
+            LoomLine tmpLoomLine = Instantiate(loomLine, lineSpawnSpots[i].transform.position, lineSpawnSpots[i].transform.rotation, parentOfLines.transform);
+            lines.Add(tmpLoomLine);
+            lineNr++;
         }
-    }
-    */
+    } 
+
 
     public void assignLineColors() {
         int colorNr = 0;
@@ -65,6 +67,11 @@ public class Loom : MonoBehaviour
                 colorNr++;
             }
         }
+    }
+
+    public void assignOneLineColours()
+    {
+
     }
 
     void GenerateColorPairList() {
@@ -111,6 +118,58 @@ public class Loom : MonoBehaviour
             }
 
             colorPairs.Add(tmpColorPair);
+        }
+    }
+
+    public void MoveLines()
+    {
+        if(!isMoving) 
+        {
+            isMoving = true;
+            SpawnLine();
+            linesToDestroy.Add(lines[0]);
+            StartCoroutine(MoveLinesCoroutine());
+            lines.RemoveAt(0);
+            DestroyLines();
+        }
+    }
+
+    private IEnumerator MoveLinesCoroutine()
+    {
+        Vector3 startPosition = parentOfLines.transform.position;
+        Vector3 endPosition = new Vector3(startPosition.x, startPosition.y - 0.5f, startPosition.z);
+        float elapsedTime = 0;
+
+        while (elapsedTime < moveDuration)
+        {
+            parentOfLines.transform.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / moveDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        parentOfLines.transform.position = endPosition;
+        isMoving = false;
+    }
+
+    void SpawnLine()
+    {
+        LoomLine tmpLoomLine = Instantiate(loomLine, newLineSpawnSpot.transform.position, newLineSpawnSpot.transform.rotation, parentOfLines.transform);
+        lineNr++;
+        //Debug.Log(lineNr);
+        tmpLoomLine.lineLeft.GetComponent<SpriteRenderer>().color = colorPairs[lineNr].colourLeft;
+        tmpLoomLine.lineRight.GetComponent<SpriteRenderer>().color = colorPairs[lineNr].colourRight;
+        lines.Add(tmpLoomLine);
+    }
+
+    void DestroyLines()
+    {
+        
+        //Debug.Log("DestoryLines");
+        if(linesToDestroy.Count > 2)
+        {
+            LoomLine tmpLine = linesToDestroy[0];
+            linesToDestroy.RemoveAt(0);
+            Destroy(tmpLine.gameObject);
         }
     }
 }

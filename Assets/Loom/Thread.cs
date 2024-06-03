@@ -33,12 +33,14 @@ public class Thread : MonoBehaviour
             if(lineColor == threadColor) {
                 score++;
                 timerController.AddTime();
-                loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color = color;
-                loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color = color;
-                loom.colorPairs.RemoveAt(0);
-                loom.assignLineColors();
+                //loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color = color;
+                //loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color = color;
+                //loom.colorPairs.RemoveAt(0);
+                //loom.assignLineColors();
+                loom.MoveLines();
             } else {
                 score = 0;
+                timerController.DeleteTime();
             }
             textMesh.text = score.ToString();
         //}
