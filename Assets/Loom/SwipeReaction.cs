@@ -10,7 +10,7 @@ public class SwipeReaction : MonoBehaviour
     public Loom loom;
     public TimerController timerController;
 
-    int score;
+    //public int score;
     [SerializeField] private TextMeshProUGUI textMesh;
     private bool[] correctSwipe;
     private float swipeDelay = 0.5f;
@@ -18,7 +18,7 @@ public class SwipeReaction : MonoBehaviour
 
     void Start()
     {
-        score = 0;
+        //score = 0;
         correctSwipe = new bool[2] { false, false };
         SwipeDetection.OnSwipe += HandleSwipeDirectionn;
     }
@@ -84,31 +84,40 @@ public class SwipeReaction : MonoBehaviour
 
     void ResetCorrectSwipes()
     {
+
         correctSwipe[0] = false;
         correctSwipe[1] = false;
+
+        if(loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color != loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color)
+        {
+            ScoreManager.gameScore = 0;
+            timerController.DeleteTime();
+            loom.lines[0].WrongMove();
+        }
+
     }
 
     void ProcessCorrectSwipe()
     {
-        score++;
+        ScoreManager.gameScore++;
         timerController.AddTime();
         Color lineLeftColor = loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color;
         Color lineRightColor = loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color;
         loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color = new Color(lineLeftColor.r, lineLeftColor.g, lineLeftColor.b, 1.0f);
         loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color = new Color(lineRightColor.r, lineRightColor.g, lineRightColor.b, 1.0f);
         loom.MoveLines();
-        textMesh.text = score.ToString();
+        textMesh.text = ScoreManager.gameScore.ToString();
     }
 
     void ProcessIncorrectSwipe()
     {
-        score = 0;
+        ScoreManager.gameScore = 0;
         timerController.DeleteTime();
         Color lineLeftColor = loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color;
         Color lineRightColor = loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color;
         loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color = new Color(lineLeftColor.r, lineLeftColor.g, lineLeftColor.b, 0.75f);
         loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color = new Color(lineRightColor.r, lineRightColor.g, lineRightColor.b, 0.75f);
         loom.lines[0].WrongMove();
-        textMesh.text = score.ToString();
+        textMesh.text = ScoreManager.gameScore.ToString();
     }
 }

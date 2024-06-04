@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TimerController : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class TimerController : MonoBehaviour
             timeRemaining -= Time.deltaTime;
             DisplayTime(timeRemaining);
         } else {
+            SceneManager.LoadScene("GameOver");
             //gameOverMenu.GameOverMenuObj.SetActive(true);
         }
     }

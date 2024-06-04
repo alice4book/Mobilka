@@ -1958,7 +1958,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1237537055}
-  - component: {fileID: 1237537054}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1966,20 +1965,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1237537054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1237537053}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55bed9ef89095dd4d9045005ca77e833, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameOverMenuObj: {fileID: 0}
-  isPaused: 0
 --- !u!4 &1237537055
 Transform:
   m_ObjectHideFlags: 0
@@ -3521,8 +3506,8 @@ MonoBehaviour:
   newLineSpawnSpotLeft: {fileID: 1574173934}
   newLineSpawnSpotRight: {fileID: 1541380068}
   lines: []
-  colorLeft: {r: 0.5019608, g: 0.17254902, b: 0.7529412, a: 1}
-  colorRight: {r: 0.79607844, g: 0.8784314, b: 0.015686275, a: 1}
+  colorLeft: {r: 0.5019608, g: 0.17254902, b: 0.7529412, a: 0.5019608}
+  colorRight: {r: 0.79607844, g: 0.8784314, b: 0.015686275, a: 0.5019608}
   moveDistance: 0.5
   moveDuration: 0.1
   linesToDestroy: []

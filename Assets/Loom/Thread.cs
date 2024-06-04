@@ -9,7 +9,7 @@ public class Thread : MonoBehaviour
     public Loom loom;
     public TimerController timerController;
 
-    int score;
+    //int score;
     [SerializeField] private TextMeshProUGUI textMesh;
 
     // Start is called before the first frame update
@@ -26,7 +26,7 @@ public class Thread : MonoBehaviour
 
     void OnMouseDown() {
         //if(loom.colors.Count > 20) {
-            score = int.Parse(textMesh.text);
+            ScoreManager.gameScore = int.Parse(textMesh.text);
             Color tmpLineColor = loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color;
             Vector3 lineColor = new Vector3(tmpLineColor.r, tmpLineColor.g, tmpLineColor.b);
             Vector3 threadColor = new Vector3(color.r,color.g,color.b);
@@ -35,7 +35,7 @@ public class Thread : MonoBehaviour
             Color prevColR = loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color;
 
             if(lineColor == threadColor) {
-                score++;
+                ScoreManager.gameScore++;
                 //Debug.Log("score++");
                 timerController.AddTime();
                 loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color = new Color(prevColL.r, prevColL.g, prevColL.b, 1.0f);
@@ -45,13 +45,13 @@ public class Thread : MonoBehaviour
                 loom.MoveLines();
             } else 
             {
-                score = 0;
+                ScoreManager.gameScore = 0;
                 timerController.DeleteTime();
                 loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color = new Color(prevColL.r, prevColL.g, prevColL.b, 0.75f);
                 loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color = new Color(prevColR.r, prevColR.g, prevColR.b, 0.75f);
                 loom.lines[0].WrongMove();
             }
-            textMesh.text = score.ToString();
+            textMesh.text = ScoreManager.gameScore.ToString();
         //}
 
   

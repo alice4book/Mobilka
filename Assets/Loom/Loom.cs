@@ -70,11 +70,6 @@ public class Loom : MonoBehaviour
         }
     }
 
-    public void assignOneLineColours()
-    {
-
-    }
-
     void GenerateColorPairList() {
         Color tmpColor = new Color(1.0f,0.0f,0.0f,0.5f);
         ColorPair tmpColorPair = new ColorPair(tmpColor, tmpColor);
