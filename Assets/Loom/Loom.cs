@@ -34,6 +34,7 @@ public class Loom : MonoBehaviour
     {
         //colors = new List<Color>();
         colorPairs = new List<ColorPair>();
+        lines = new List<LoomLine>();
         linesToDestroy = new List<LoomLine>();
 
         //GenerateColorList();

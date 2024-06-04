@@ -120,4 +120,9 @@ public class SwipeReaction : MonoBehaviour
         loom.lines[0].WrongMove();
         textMesh.text = ScoreManager.gameScore.ToString();
     }
+
+    private void OnDestroy()
+    {
+        SwipeDetection.OnSwipe -= HandleSwipeDirectionn;
+    }
 }
