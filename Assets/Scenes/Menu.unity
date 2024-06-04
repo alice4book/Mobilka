@@ -154,6 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e72b8067144fa1f4f819db672e6e88f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Menu: 0
+  Demo2: 1
+  Shop: 0
 --- !u!212 &208486434
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1433,8 +1436,8 @@ Transform:
   m_GameObject: {fileID: 1259757328}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0053, y: 0.0318, z: 0}
-  m_LocalScale: {x: 5.5963135, y: 9.971107, z: 1}
+  m_LocalPosition: {x: 0.0382, y: -0.0117, z: 0}
+  m_LocalScale: {x: 6.161468, y: 10.231856, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
