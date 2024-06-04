@@ -41,6 +41,8 @@ public class Loom : MonoBehaviour
         GenerateLines();
         GenerateColorPairList();
         assignLineColors();
+
+        ScoreManager.gameScore = 0;
     }
 
     // Update is called once per frame

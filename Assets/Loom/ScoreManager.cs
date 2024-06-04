@@ -8,5 +8,4 @@ public class ScoreManager : MonoBehaviour
     public static int linesMade;
     public static int highestCombo;
 
-
 }
