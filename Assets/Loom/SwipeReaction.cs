@@ -71,15 +71,15 @@ public class SwipeReaction : MonoBehaviour
                 {
                     StopCoroutine(swipeCoroutine);
                 }
-                swipeCoroutine = StartCoroutine(ResetCorrectSwipesAfterDelay(swipeDelay));
+                swipeCoroutine = StartCoroutine(ResetCorrectSwipesAfterDelay(swipeDelay, loom.lines[0].gameObject));
             }
         }
     }
 
-    IEnumerator ResetCorrectSwipesAfterDelay(float delay)
+    IEnumerator ResetCorrectSwipesAfterDelay(float delay, GameObject loomLine)
     {
         yield return new WaitForSeconds(delay);
-        ResetCorrectSwipes();
+        ResetCorrectSwipesDelay(loomLine);
     }
 
     void ResetCorrectSwipes()
@@ -88,7 +88,15 @@ public class SwipeReaction : MonoBehaviour
         correctSwipe[0] = false;
         correctSwipe[1] = false;
 
-        if(loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color != loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color)
+    }
+
+    void ResetCorrectSwipesDelay(GameObject loomLine)
+    {
+
+        correctSwipe[0] = false;
+        correctSwipe[1] = false;
+
+        if(loom.lines[0].gameObject == loomLine)
         {
             ScoreManager.gameScore = 0;
             timerController.DeleteTime();
@@ -100,6 +108,7 @@ public class SwipeReaction : MonoBehaviour
     void ProcessCorrectSwipe()
     {
         ScoreManager.gameScore++;
+        ScoreManager.highScore++;
         timerController.AddTime();
         Color lineLeftColor = loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color;
         Color lineRightColor = loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color;

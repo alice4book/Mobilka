@@ -36,6 +36,7 @@ public class Thread : MonoBehaviour
 
             if(lineColor == threadColor) {
                 ScoreManager.gameScore++;
+                ScoreManager.highScore++;
                 //Debug.Log("score++");
                 timerController.AddTime();
                 loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color = new Color(prevColL.r, prevColL.g, prevColL.b, 1.0f);

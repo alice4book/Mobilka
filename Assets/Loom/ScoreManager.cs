@@ -6,6 +6,7 @@ public class ScoreManager : MonoBehaviour
 {
     public static int gameScore;
     public static int highScore;
+    public static int highestCombo;
 
-    
+
 }
