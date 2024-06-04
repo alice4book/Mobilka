@@ -467,7 +467,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -111, y: 194}
+  m_AnchoredPosition: {x: -160, y: 194}
   m_SizeDelta: {x: 342.12, y: 82.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &324483680
@@ -490,7 +490,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Highest Score:'
+  m_text: 'Lines Made:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1e2d668807a83764ba3002be851123b1, type: 2}
   m_sharedMaterial: {fileID: 4679920543946761527, guid: 1e2d668807a83764ba3002be851123b1, type: 2}
@@ -1752,7 +1752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 538165468}
-  highScoreText: {fileID: 22989786}
+  linesMadeText: {fileID: 22989786}
 --- !u!4 &1745942777
 Transform:
   m_ObjectHideFlags: 0

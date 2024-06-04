@@ -1279,6 +1279,10 @@ MonoBehaviour:
   timeText: {fileID: 1419388039}
   timeRemaining: 0
   startingTime: 10
+  timeSpeed: 1
+  minTimeSpeed: 1
+  maxTimeSpeed: 8
+  loom: {fileID: 2118616431}
 --- !u!1 &647513502
 GameObject:
   m_ObjectHideFlags: 0

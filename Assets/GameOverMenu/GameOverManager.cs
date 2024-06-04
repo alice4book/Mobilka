@@ -8,14 +8,14 @@ public class GameOverManager : MonoBehaviour
 {
 
     public TMP_Text scoreText;
-    public TMP_Text highScoreText;
+    public TMP_Text linesMadeText;
 
     // Start is called before the first frame update
     void Start()
     {
         //ScoreManager.highScore = ScoreManager.gameScore;
         scoreText.text = ScoreManager.gameScore.ToString();
-        highScoreText.text = ScoreManager.highScore.ToString();
+        linesMadeText.text = ScoreManager.linesMade.ToString();
     }
 
     // Update is called once per frame

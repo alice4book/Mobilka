@@ -108,7 +108,7 @@ public class SwipeReaction : MonoBehaviour
     void ProcessCorrectSwipe()
     {
         ScoreManager.gameScore++;
-        ScoreManager.highScore++;
+        ScoreManager.linesMade++;
         timerController.AddTime();
         Color lineLeftColor = loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color;
         Color lineRightColor = loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color;
