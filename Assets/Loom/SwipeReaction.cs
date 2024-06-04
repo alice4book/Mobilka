@@ -16,6 +16,10 @@ public class SwipeReaction : MonoBehaviour
     private float swipeDelay = 0.5f;
     private Coroutine swipeCoroutine;
 
+    //shuttles
+    public Shuttle shuttleLeft;
+    public Shuttle shuttleRight;
+
     void Start()
     {
         //score = 0;
@@ -39,11 +43,23 @@ public class SwipeReaction : MonoBehaviour
             if ((value == 1 && currentLeftColorVec == leftColorVec) || (value == 2 && currentLeftColorVec == rightColorVec))
             {
                 // Correct single swipe
+                if(value == 1 && currentLeftColorVec == leftColorVec) {
+                    shuttleLeft.CorrectMove();
+                }
+                if(value == 2 && currentLeftColorVec == rightColorVec) {
+                    shuttleRight.CorrectMove();
+                }
                 ProcessCorrectSwipe();
             }
             else
             {
                 // Incorrect swipe
+                if(value == 1 && currentLeftColorVec != leftColorVec) {
+                    shuttleLeft.WrongMove();
+                }
+                if(value == 2 && currentLeftColorVec != rightColorVec) {
+                    shuttleRight.WrongMove();
+                }
                 ProcessIncorrectSwipe();
             }
         }
