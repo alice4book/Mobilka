@@ -37,6 +37,7 @@ public class Shuttle : MonoBehaviour
     public void WrongMove() 
     {
         animator.Play(wrongMoveAnimation,0,0);
+        Handheld.Vibrate();
     }
 
     public void CorrectMove()
