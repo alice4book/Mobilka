@@ -19,11 +19,13 @@ public class TimerController : MonoBehaviour
 
     public Loom loom;
 
+    public bool isTimeRunning;
     //public GameOverMenu gameOverMenu;
 
     // Start is called before the first frame update
     void Start()
     {
+        isTimeRunning = false;
         timeRemaining = startingTime;
         ScoreManager.linesMade = 0;
     }
@@ -31,14 +33,16 @@ public class TimerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ChangeTimeSpeed();
+        if(isTimeRunning) {
+            ChangeTimeSpeed();
 
-        if(timeRemaining >= 1) {
-            timeRemaining -= Time.deltaTime * timeSpeed;
-            DisplayTime(timeRemaining);
-        } else {
-            SceneManager.LoadScene("GameOver");
-            //gameOverMenu.GameOverMenuObj.SetActive(true);
+            if(timeRemaining >= 1) {
+                timeRemaining -= Time.deltaTime * timeSpeed;
+                DisplayTime(timeRemaining);
+            } else {
+                SceneManager.LoadScene("GameOver");
+                //gameOverMenu.GameOverMenuObj.SetActive(true);
+            }
         }
         
     }

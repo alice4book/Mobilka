@@ -128,6 +128,10 @@ public class SwipeReaction : MonoBehaviour
         //ScoreManager.CalculateComboMultiplier();
         ScoreManager.AddToScore();
 
+        if(ScoreManager.linesMade  == 1) {
+            timerController.isTimeRunning = true;
+        }
+
         timerController.AddTime();
         Color lineLeftColor = loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color;
         Color lineRightColor = loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color;
