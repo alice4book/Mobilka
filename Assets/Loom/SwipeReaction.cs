@@ -128,7 +128,7 @@ public class SwipeReaction : MonoBehaviour
         //ScoreManager.CalculateComboMultiplier();
         ScoreManager.AddToScore();
 
-        if(ScoreManager.linesMade  == 1) {
+        if((ScoreManager.linesMade  == 3 && ScoreManager.numberOfGames == 0) || (ScoreManager.linesMade  == 1 && ScoreManager.numberOfGames > 0)) {
             timerController.isTimeRunning = true;
         }
 

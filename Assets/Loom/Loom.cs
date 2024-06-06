@@ -74,9 +74,23 @@ public class Loom : MonoBehaviour
     }
 
     void GenerateColorPairList() {
+
+        int firstNumber = 0;
         Color tmpColor = new Color(1.0f,0.0f,0.0f,0.5f);
+
         ColorPair tmpColorPair = new ColorPair(tmpColor, tmpColor);
-        for(int i = 0; i < 1000; i++) {
+        if(ScoreManager.numberOfGames == 0) {
+            //Debug.Log("First GAME");
+            firstNumber = 3;
+            tmpColorPair = new ColorPair(colorLeft, colorLeft);
+            colorPairs.Add(tmpColorPair);
+            tmpColorPair = new ColorPair(colorRight, colorRight);
+            colorPairs.Add(tmpColorPair);
+            tmpColorPair = new ColorPair(colorLeft, colorRight);
+            colorPairs.Add(tmpColorPair);
+        }
+
+        for(int i = firstNumber; i < 1000; i++) {
             int random = Random.Range(0,5);
             switch(random) 
             {

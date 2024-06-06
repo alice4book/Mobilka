@@ -19,6 +19,9 @@ public class ScoreManager : MonoBehaviour
     //how may lines are correct without a wrong move
     public static int combo;
 
+    //is it first game, number of games played
+    public static int numberOfGames;
+
     public static void AddToScore()
     {
         gameScore = gameScore + (1 * comboMultiplier);
