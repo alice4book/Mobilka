@@ -125,11 +125,13 @@ public class Loom : MonoBehaviour
         if(!isMoving) 
         {
             isMoving = true;
+            lines[0].Idle();
             SpawnLine();
             linesToDestroy.Add(lines[0]);
             StartCoroutine(MoveLinesCoroutine());
             lines.RemoveAt(0);
             DestroyLines();
+            lines[0].CurrentLine();
         }
     }
 
@@ -171,7 +173,7 @@ public class Loom : MonoBehaviour
     {
         
         //Debug.Log("DestoryLines");
-        if(linesToDestroy.Count > 2)
+        if(linesToDestroy.Count > 10)
         {
             LoomLine tmpLine = linesToDestroy[0];
             linesToDestroy.RemoveAt(0);

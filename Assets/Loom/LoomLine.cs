@@ -11,6 +11,7 @@ public class LoomLine : MonoBehaviour
 
     private int wrongMoveAnimation;
     private int idleAnimation;
+    private int currentLineAnimation;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class LoomLine : MonoBehaviour
 
         wrongMoveAnimation = Animator.StringToHash("WrongMoveAnimation");
         idleAnimation = Animator.StringToHash("IdleAnimation");
+        currentLineAnimation = Animator.StringToHash("CurrentLineAnimation");
     }
 
     public void Idle() 
@@ -29,5 +31,9 @@ public class LoomLine : MonoBehaviour
     public void WrongMove() 
     {
         animator.Play(wrongMoveAnimation,0,0);
+    }
+    public void CurrentLine()
+    {
+        animator.Play(currentLineAnimation,0,0);
     }
 }
