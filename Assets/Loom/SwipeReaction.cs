@@ -13,7 +13,7 @@ public class SwipeReaction : MonoBehaviour
     //public int score;
     [SerializeField] private TextMeshProUGUI textMesh;
     private bool[] correctSwipe;
-    private float swipeDelay = 0.5f;
+    private float swipeDelay = 0.2f;
     private Coroutine swipeCoroutine;
 
     //shuttles
@@ -114,7 +114,7 @@ public class SwipeReaction : MonoBehaviour
 
         if(loom.lines[0].gameObject == loomLine)
         {
-            ScoreManager.gameScore = 0;
+            ScoreManager.ResetCombo();
             timerController.DeleteTime();
             loom.lines[0].WrongMove();
         }
@@ -123,8 +123,11 @@ public class SwipeReaction : MonoBehaviour
 
     void ProcessCorrectSwipe()
     {
-        ScoreManager.gameScore++;
-        ScoreManager.linesMade++;
+        ScoreManager.IncreaseLinesMade();
+        ScoreManager.IncreaseCombo();
+        //ScoreManager.CalculateComboMultiplier();
+        ScoreManager.AddToScore();
+
         timerController.AddTime();
         Color lineLeftColor = loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color;
         Color lineRightColor = loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color;
@@ -136,7 +139,7 @@ public class SwipeReaction : MonoBehaviour
 
     void ProcessIncorrectSwipe()
     {
-        ScoreManager.gameScore = 0;
+        ScoreManager.ResetCombo();
         timerController.DeleteTime();
         Color lineLeftColor = loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color;
         Color lineRightColor = loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color;

@@ -6,20 +6,19 @@ using UnityEngine.UI;
 
 public class SaveScores : MonoBehaviour
 {
-    public TMP_Text linesMadeRecordText;
+    public TMP_Text highestScoreRecordText;
 
     private void Start()
     {
-        
-        int linesMadeSaved = GetSavedValue();
-        Debug.Log(linesMadeSaved);
-        Debug.Log(ScoreManager.linesMade);
-        if(linesMadeSaved < ScoreManager.linesMade)
+        int highestScoreSaved = GetSavedValue();
+        //Debug.Log(highestScoreSaved);
+        //Debug.Log(ScoreManager.gameScore);
+        if(highestScoreSaved < ScoreManager.gameScore)
         {
-            SetNewSavedValue(ScoreManager.linesMade);
-            linesMadeRecordText.text = ScoreManager.linesMade.ToString();
+            SetNewSavedValue(ScoreManager.gameScore);
+            highestScoreRecordText.text = ScoreManager.gameScore.ToString();
         } else {
-            linesMadeRecordText.text = linesMadeSaved.ToString();
+            highestScoreRecordText.text = highestScoreSaved.ToString();
         }
     }
 

@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 22989787}
   - component: {fileID: 22989786}
   m_Layer: 5
-  m_Name: HighScoreValue
+  m_Name: LinesMadeValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: 324483681}
   - component: {fileID: 324483680}
   m_Layer: 5
-  m_Name: HighScoreText
+  m_Name: LinesMadeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -467,7 +467,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -160, y: 194}
+  m_AnchoredPosition: {x: -119, y: 194}
   m_SizeDelta: {x: 342.12, y: 82.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &324483680
@@ -524,7 +524,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -992,7 +992,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -126, y: 194}
+  m_AnchoredPosition: {x: -117, y: 194}
   m_SizeDelta: {x: 342.12, y: 82.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &651944073
@@ -1015,7 +1015,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Lines Record:'
+  m_text: 'High Score:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1e2d668807a83764ba3002be851123b1, type: 2}
   m_sharedMaterial: {fileID: 4679920543946761527, guid: 1e2d668807a83764ba3002be851123b1, type: 2}
@@ -1049,7 +1049,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1403,7 +1403,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -327, y: 194}
+  m_AnchoredPosition: {x: -277, y: 194}
   m_SizeDelta: {x: 342.12, y: 82.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &870094042
@@ -1460,7 +1460,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2222,7 +2222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1599663288}
   m_Layer: 5
-  m_Name: HighScore
+  m_Name: LinesMade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2308,7 +2308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8c9eafe498ea142a911ba3e8a74f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linesMadeRecordText: {fileID: 1544530064}
+  highestScoreRecordText: {fileID: 1544530064}
 --- !u!1 &1922426150
 GameObject:
   m_ObjectHideFlags: 0
