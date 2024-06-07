@@ -22,6 +22,9 @@ public class ScoreManager : MonoBehaviour
     //is it first game, number of games played
     public static int numberOfGames;
 
+    //nr of coins we have, can buy in shop using coins
+    public static int coins;
+
     public static void AddToScore()
     {
         gameScore = gameScore + (1 * comboMultiplier);
@@ -53,8 +56,29 @@ public class ScoreManager : MonoBehaviour
             int comboLower = (combo/10) * 10;
             comboMultiplier = comboLower / 10;
         }
-        Debug.Log(comboMultiplier);
+        //Debug.Log(comboMultiplier);
 
+    }
+
+    public static void ManageCoins()
+    {
+        if(linesMade % 20 == 0)
+        {
+            //Debug.Log("Made 20 lines");
+            //Debug.Log(linesMade);
+            coins++;
+            Debug.Log(coins);
+        }
+    }
+
+    public static void UseCoins(int amount)
+    {
+        if(coins >= amount) 
+        {
+            coins = coins - amount;
+        } else {
+            Debug.Log("Not enough coins");
+        }
     }
 
 }
