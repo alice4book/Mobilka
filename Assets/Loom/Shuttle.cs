@@ -19,6 +19,12 @@ public class Shuttle : MonoBehaviour
         animator = GetComponent<Animator>();
 
         if(leftShuttle) {
+            GetComponentInChildren<SpriteRenderer>().color = GlobalVar.color1;
+        } else {
+            GetComponentInChildren<SpriteRenderer>().color = GlobalVar.color2;
+        }
+
+        if(leftShuttle) {
             wrongMoveAnimation = Animator.StringToHash("WrongMoveLeftShuttle");
             correctMoveAnimation = Animator.StringToHash("CorrectMoveLeftShuttle");
             idleAnimation = Animator.StringToHash("IdleLeftShuttle");

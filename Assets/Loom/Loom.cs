@@ -32,6 +32,12 @@ public class Loom : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        colorLeft = GlobalVar.color1;
+        colorLeft.a = 0.5f;
+        colorRight = GlobalVar.color2;
+        colorRight.a = 0.5f;
+
         //colors = new List<Color>();
         colorPairs = new List<ColorPair>();
         lines = new List<LoomLine>();

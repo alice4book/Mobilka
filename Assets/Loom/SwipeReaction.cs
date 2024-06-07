@@ -22,6 +22,9 @@ public class SwipeReaction : MonoBehaviour
 
     void Start()
     {
+        colorLeft = GlobalVar.color1;
+        colorRight = GlobalVar.color2;
+
         //score = 0;
         correctSwipe = new bool[2] { false, false };
         SwipeDetection.OnSwipe += HandleSwipeDirectionn;
