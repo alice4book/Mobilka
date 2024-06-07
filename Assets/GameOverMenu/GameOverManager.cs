@@ -13,11 +13,11 @@ public class GameOverManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ScoreManager.numberOfGames++;
-        Debug.Log(ScoreManager.numberOfGames);
-        //ScoreManager.highScore = ScoreManager.gameScore;
-        scoreText.text = ScoreManager.gameScore.ToString();
-        linesMadeText.text = ScoreManager.linesMade.ToString();
+        GlobalVar.numberOfGames++;
+        Debug.Log(GlobalVar.numberOfGames);
+        //GlobalVar.highScore = GlobalVar.gameScore;
+        scoreText.text = GlobalVar.gameScore.ToString();
+        linesMadeText.text = GlobalVar.linesMade.ToString();
     }
 
     // Update is called once per frame

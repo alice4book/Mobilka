@@ -27,7 +27,7 @@ public class TimerController : MonoBehaviour
     {
         isTimeRunning = false;
         timeRemaining = startingTime;
-        ScoreManager.linesMade = 0;
+        GlobalVar.linesMade = 0;
     }
 
     // Update is called once per frame
@@ -78,7 +78,7 @@ public class TimerController : MonoBehaviour
 
     void ChangeTimeSpeed()
     {
-        int itemCount = ScoreManager.linesMade;
+        int itemCount = GlobalVar.linesMade;
         float ratio = (float)itemCount / 1000.0f;
         timeSpeed = Mathf.Lerp(minTimeSpeed, maxTimeSpeed, ratio);
     }

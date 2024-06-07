@@ -43,7 +43,7 @@ public class SwipeDetection : MonoBehaviour
                 {
                     _startPositions[i] = GetTouchPosition(i);
                     _isSwiping[i] = true;
-                    Debug.Log($"Start swipe {i}");
+                    //Debug.Log($"Start swipe {i}");
                 }
             }
         }

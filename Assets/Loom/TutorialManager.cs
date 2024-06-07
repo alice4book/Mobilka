@@ -32,19 +32,19 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(ScoreManager.linesMade  == 0 && ScoreManager.numberOfGames == 0) 
+        if(GlobalVar.linesMade  == 0 && GlobalVar.numberOfGames == 0) 
         {
             //Debug.Log("FIRST");
             tutorialTextAnimations.gameObject.SetActive(true);
             tutorialTextAnimations.SwipeRight();
         } 
-        else if(ScoreManager.linesMade  == 1 && ScoreManager.numberOfGames == 0)
+        else if(GlobalVar.linesMade  == 1 && GlobalVar.numberOfGames == 0)
         {
             //Debug.Log("SECOND");
             tutorialText.text = "Swipe left";
             tutorialTextAnimations.SwipeLeft();
         } 
-        else if (ScoreManager.linesMade  == 2 && ScoreManager.numberOfGames == 0)
+        else if (GlobalVar.linesMade  == 2 && GlobalVar.numberOfGames == 0)
         {
             tutorialTextAnimations.gameObject.GetComponent<Animator>().enabled = false;
             tutorialTextAnimations.gameObject.SetActive(false);
@@ -62,7 +62,7 @@ public class TutorialManager : MonoBehaviour
             tutorialDoubleLeftTextAnimations.SwipeRightHalf();
             tutorialDoubleRightTextAnimations.SwipeLeftHalf();
 
-        } else if (ScoreManager.linesMade > 2 && ScoreManager.numberOfGames == 0)
+        } else if (GlobalVar.linesMade > 2 && GlobalVar.numberOfGames == 0)
         {
             //tutorialDoubleLeftTextAnimations.Idle();
             //tutorialDoubleRightTextAnimations.Idle();
@@ -72,7 +72,7 @@ public class TutorialManager : MonoBehaviour
             tutorialDoubleRightTextAnimations.gameObject.SetActive(false);
         }
 
-        if(ScoreManager.numberOfGames > 0) 
+        if(GlobalVar.numberOfGames > 0) 
         {
             tutorialTextAnimations.gameObject.GetComponent<Animator>().enabled = false;
             tutorialDoubleLeftTextAnimations.gameObject.GetComponent<Animator>().enabled = false;

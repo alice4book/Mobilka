@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ScoreManager.gameScore = 0;
+        GlobalVar.gameScore = 0;
     }
 
     // Update is called once per frame

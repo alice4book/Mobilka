@@ -12,11 +12,11 @@ public class SaveScores : MonoBehaviour
     {
         int highestScoreSaved = GetSavedValue();
         //Debug.Log(highestScoreSaved);
-        //Debug.Log(ScoreManager.gameScore);
-        if(highestScoreSaved < ScoreManager.gameScore)
+        //Debug.Log(GlobalVar.gameScore);
+        if(highestScoreSaved < GlobalVar.gameScore)
         {
-            SetNewSavedValue(ScoreManager.gameScore);
-            highestScoreRecordText.text = ScoreManager.gameScore.ToString();
+            SetNewSavedValue(GlobalVar.gameScore);
+            highestScoreRecordText.text = GlobalVar.gameScore.ToString();
         } else {
             highestScoreRecordText.text = highestScoreSaved.ToString();
         }
