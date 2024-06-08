@@ -12,7 +12,6 @@ public class SwipeReaction : MonoBehaviour
 
     //public int score;
     [SerializeField] private TextMeshProUGUI textMesh;
-    private bool[] correctSwipe;
     private float swipeDelay = 0.2f;
     private Coroutine swipeCoroutine;
 
@@ -26,11 +25,10 @@ public class SwipeReaction : MonoBehaviour
         colorRight = GlobalVar.color2;
 
         //score = 0;
-        correctSwipe = new bool[2] { false, false };
-        SwipeDetection.OnSwipe += HandleSwipeDirectionn;
+        SwipeDetection.OnSwipeDelegate += HandleSwipeDirection;
     }
 
-    private void HandleSwipeDirectionn(int swipeIndex, int value)
+    private void HandleSwipeDirection(int value)
     {
         Color lineLeftColor = loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color;
         Color lineRightColor = loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color;
@@ -68,21 +66,11 @@ public class SwipeReaction : MonoBehaviour
         }
         else
         {
-            // Double swipe needed
-            if (value == 1 && currentLeftColorVec == leftColorVec)
-            {
-                correctSwipe[0] = true;
-            }
-            else if (value == 2 && currentRightColorVec == rightColorVec)
-            {
-                correctSwipe[1] = true;
-            }
-
-            if (correctSwipe[0] && correctSwipe[1])
+            // Double swipe
+            if (value == 5)
             {
                 // Both swipes are correct
                 ProcessCorrectSwipe();
-                ResetCorrectSwipes();
             }
             else
             {
@@ -101,27 +89,14 @@ public class SwipeReaction : MonoBehaviour
         ResetCorrectSwipesDelay(loomLine);
     }
 
-    void ResetCorrectSwipes()
-    {
-
-        correctSwipe[0] = false;
-        correctSwipe[1] = false;
-
-    }
-
     void ResetCorrectSwipesDelay(GameObject loomLine)
     {
-
-        correctSwipe[0] = false;
-        correctSwipe[1] = false;
-
         if(loom.lines[0].gameObject == loomLine)
         {
             GlobalVar.ResetCombo();
             timerController.DeleteTime();
             loom.lines[0].WrongMove();
         }
-
     }
 
     void ProcessCorrectSwipe()
@@ -159,6 +134,6 @@ public class SwipeReaction : MonoBehaviour
 
     private void OnDestroy()
     {
-        SwipeDetection.OnSwipe -= HandleSwipeDirectionn;
+        SwipeDetection.OnSwipeDelegate -= HandleSwipeDirection;
     }
 }

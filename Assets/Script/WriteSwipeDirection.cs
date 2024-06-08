@@ -6,45 +6,53 @@ using UnityEngine;
 
 public class WriteSwipeDirection : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI[] textMeshes = new TextMeshProUGUI[2];
-
-    private void Awake()
-    {
-        for (int i = 0; i < textMeshes.Length; i++)
-        {
-            //textMeshes[i] = transform.GetChild(i).GetComponent<TextMeshProUGUI>();
-        }
-    }
-
+    [SerializeField] private TextMeshProUGUI _textMeshe;
+    private string _lastDirection;
+    private string _all;
     void Start()
     {
-        SwipeDetection.OnSwipe += HandleSwipeDirection;
+        SwipeDetection.OnSwipeDelegate += HandleSwipeDirection;
+        SwipeDetection.OnVector += HandleVectorCheck;
+        _all = "";
     }
 
-    private void HandleSwipeDirection(int swipeIndex, int value)
-    {
-        if (swipeIndex < 0 || swipeIndex >= textMeshes.Length) return;
 
+    private void OnDestroy()
+    {
+        SwipeDetection.OnSwipeDelegate -= HandleSwipeDirection;
+    }
+
+    private void HandleVectorCheck(string name, Vector2 value)
+    {
+        _all += name + " " + value.ToString() + "\n";
+        _textMeshe.text = _all;
+    }
+
+    private void HandleSwipeDirection( int value)
+    {
         string direction = "";
         switch (value)
         {
             case 1:
-                Debug.Log("R");
-                direction = "Right";
+                direction += "Right";
                 break;
             case 2:
-                Debug.Log("L");
-                direction = "Left";
+                direction += "Left";
                 break;
             case 3:
-                Debug.Log("U");
-                direction = "Up";
+                direction += "Up";
                 break;
             case 4:
-                Debug.Log("D");
-                direction = "Down";
+                direction += "Down";
+                break;
+            case 5:
+                direction += "Both";
+                break;
+            default:
+                direction += "Error";
                 break;
         }
-        textMeshes[swipeIndex].text = direction;
+        _all += direction + "\n";
+        _textMeshe.text = _all;
     }
 }

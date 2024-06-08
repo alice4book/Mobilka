@@ -1,101 +1,139 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
+using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
+using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 
 public class SwipeDetection : MonoBehaviour
 {
     #region Variables
-    private Camera _mainCamera;
-    private Vector3[] _startPositions = new Vector3[2];
-    private Vector3[] _endPositions = new Vector3[2];
-    private Vector3[] _swipeVectors = new Vector3[2];
-    private bool[] _isSwiping = new bool[2];
-    private float _minSwipeLength;
-    public delegate void ObjectAddedDelegate(int swipeIndex, int direction);
-    public static event ObjectAddedDelegate OnSwipe;
+    private Vector2 _start;
+    private Vector2 _end;
+    private Vector2 _swipeVector;
+    private Vector2 _start2nd;
+    private Vector2 _end2nd;
+    private Vector2 _swipeVector2nd;
+    private bool _bSingle;
+    private bool _bDouble;
+    [SerializeField] private float _minSwipeLength;
+    public delegate void SwpieDelegate(int value);
+    public static event SwpieDelegate OnSwipeDelegate;
+    public delegate void VectorDelegate(string name,Vector2 value);
+    public static event VectorDelegate OnVector;
     #endregion
 
     private void Awake()
     {
-        Debug.Log("SwipeDetection");
-        _mainCamera = Camera.main;
-        _minSwipeLength = 0.5f;
+        _minSwipeLength = 0.1f;
+        _bDouble = false;
+        _bSingle = false;
+        if (!EnhancedTouchSupport.enabled)
+            EnhancedTouchSupport.Enable();
     }
 
-    private Vector3 GetTouchPosition(int touchIndex)
+    private Vector2 GetTouchPosition(int index)
     {
-        if (Input.touchCount > touchIndex)
+        if (Touch.activeTouches.Count > index)
         {
-            Touch touch = Input.GetTouch(touchIndex);
-            return _mainCamera.ScreenToWorldPoint(touch.position);
+            Touch touch = Touch.activeTouches[index];
+            return touch.screenPosition;
         }
-        return Vector3.zero;
+        return Vector2.zero;
     }
 
-    public void OnDrag(InputAction.CallbackContext ctx)
+
+    public void OnSwipe(InputAction.CallbackContext ctx)
     {
-        if (ctx.started)
+        if ((_bDouble && !_bSingle) || (!_bDouble && _bSingle) || (_bDouble && _bSingle)) {
+            _bDouble = false ; _bSingle = false ;
+            return; 
+        }
+        if (Touch.activeTouches.Count > 0)
         {
-            for (int i = 0; i < 2; i++)
+            Touch primary = Touch.activeTouches[0];
+            // Dziwny bug nie widzi TouchPhase.Ended, ale na podniesieniu palca widzi Moved lub Stationary
+            if (primary.phase == TouchPhase.Stationary 
+                || primary.phase == TouchPhase.Moved 
+                || primary.phase == TouchPhase.Canceled
+                || primary.phase == TouchPhase.Ended)
             {
-                if (Input.touchCount > i)
+                _end = GetTouchPosition(0);
+                _swipeVector = primary.screenPosition - primary.startScreenPosition;
+                if (_swipeVector.magnitude > _minSwipeLength)
                 {
-                    _startPositions[i] = GetTouchPosition(i);
-                    _isSwiping[i] = true;
-                    //Debug.Log($"Start swipe {i}");
+                    CountSwipeDir();
+                    _swipeVector = Vector3.zero;
                 }
             }
         }
-        else if (ctx.canceled)
+    }
+
+    public void OnDoubleSwipe(InputAction.CallbackContext ctx)
+    {
+        if (Touch.activeTouches.Count > 1)
         {
-            for (int i = 0; i < 2; i++)
+            Touch primary = Touch.activeTouches[0];
+            Touch secondary = Touch.activeTouches[1];
+
+            if (primary.history.Count >= 1)
             {
-                if (_isSwiping[i] && Input.touchCount > i)
-                {
-                    _endPositions[i] = GetTouchPosition(i);
-                    _swipeVectors[i] = _endPositions[i] - _startPositions[i];
-                    if (_swipeVectors[i].magnitude > _minSwipeLength)
-                    {
-                        CountSwipeDir(i);
-                    }
-                    _isSwiping[i] = false;
-                }
+                _swipeVector = primary.screenPosition - primary.startScreenPosition;
+                _end = primary.screenPosition;
+                _bSingle = true;
+            }
+            if (secondary.history.Count >= 1)
+            { 
+                _swipeVector2nd = secondary.screenPosition - secondary.startScreenPosition;
+                _end2nd = secondary.screenPosition;
+                _bDouble = true;
+            }
+            if(_bSingle && _bDouble && (secondary.phase == TouchPhase.Ended || secondary.phase == TouchPhase.Canceled || primary.phase == TouchPhase.Ended || primary.phase == TouchPhase.Canceled))
+            {
+                DoubleSwipeDir();
             }
         }
     }
 
-    private void CountSwipeDir(int index)
+    private void DoubleSwipeDir()
     {
-        int direction = 0;
-        if (Mathf.Abs(_swipeVectors[index].x) > Mathf.Abs(_swipeVectors[index].y))
+        // Ruch w lewo & w prawo
+       if ((_swipeVector.x > 0 && _swipeVector2nd.x < 0 && _end.x < _end2nd.x) || (_swipeVector2nd.x > 0 && _swipeVector.x < 0 && _end.x > _end2nd.x))
+       {
+            OnSwipeDelegate?.Invoke(5);
+       }
+    }
+
+    private void CountSwipeDir()
+    {
+        // Only left & right
+        //if (Mathf.Abs(_swipeVector.x) > Mathf.Abs(_swipeVector.y)){
+        // Ruch w lewo lub w prawo
+        if (_swipeVector.x > 0)
         {
-            // Left or right swipe
-            if (_swipeVectors[index].x > 0)
-            {
-                // Right
-                direction = 1;
-            }
-            else
-            {
-                // Left
-                direction = 2;
-            }
+            // Right
+            OnSwipeDelegate?.Invoke(1);
+        }
+        else
+        {
+            // Left
+            OnSwipeDelegate?.Invoke(2);
+        }
+        /*
         }
         else
         {
             // Up or down swipe
-            if (_swipeVectors[index].y > 0)
+            if (_swipeVector.y > 0)
             {
                 // Up
-                direction = 3;
+                OnSwipe?.Invoke(3);
             }
             else
             {
                 // Down
-                direction = 4;
+                OnSwipe?.Invoke(4);
             }
         }
-        OnSwipe?.Invoke(index, direction);
+        */
     }
 }
