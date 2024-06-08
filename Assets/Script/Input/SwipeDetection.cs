@@ -7,10 +7,8 @@ using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 public class SwipeDetection : MonoBehaviour
 {
     #region Variables
-    private Vector2 _start;
     private Vector2 _end;
     private Vector2 _swipeVector;
-    private Vector2 _start2nd;
     private Vector2 _end2nd;
     private Vector2 _swipeVector2nd;
     private bool _bSingle;
@@ -18,8 +16,6 @@ public class SwipeDetection : MonoBehaviour
     [SerializeField] private float _minSwipeLength;
     public delegate void SwpieDelegate(int value);
     public static event SwpieDelegate OnSwipeDelegate;
-    public delegate void VectorDelegate(string name,Vector2 value);
-    public static event VectorDelegate OnVector;
     #endregion
 
     private void Awake()

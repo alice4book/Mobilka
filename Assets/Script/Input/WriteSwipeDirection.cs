@@ -12,7 +12,6 @@ public class WriteSwipeDirection : MonoBehaviour
     void Start()
     {
         SwipeDetection.OnSwipeDelegate += HandleSwipeDirection;
-        SwipeDetection.OnVector += HandleVectorCheck;
         _all = "";
     }
 
