@@ -18,6 +18,11 @@ public class ShoopItems : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().color = color;
         pricetext.text = price.ToString();
+        if (unlocked)
+        {
+            padlock.SetActive(false);
+            pricetext.enabled = false;
+        }
     }
 
     public void OnMouseDown()
