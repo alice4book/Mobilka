@@ -1572,7 +1572,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1149517082}
   - component: {fileID: 1149517079}
-  - component: {fileID: 1149517081}
   - component: {fileID: 1149517080}
   - component: {fileID: 1149517083}
   m_Layer: 0
@@ -1646,14 +1645,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minSwipeLength: 0
---- !u!81 &1149517081
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1149517078}
-  m_Enabled: 1
 --- !u!4 &1149517082
 Transform:
   m_ObjectHideFlags: 0

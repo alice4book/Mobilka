@@ -26,6 +26,9 @@ public static class GlobalVar
     //is it first game, number of games played
     public static int numberOfGames;
 
+    //is music on
+    public static bool musicOn = true;
+
     public static void AddToScore()
     {
         gameScore = gameScore + (1 * comboMultiplier);

@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Rope
+  - Music
   layers:
   - Default
   - TransparentFX
