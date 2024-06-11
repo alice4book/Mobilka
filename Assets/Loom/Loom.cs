@@ -92,12 +92,12 @@ public class Loom : MonoBehaviour
             colorPairs.Add(tmpColorPair);
             tmpColorPair = new ColorPair(colorRight, colorRight);
             colorPairs.Add(tmpColorPair);
-            tmpColorPair = new ColorPair(colorLeft, colorRight);
+            tmpColorPair = new ColorPair(colorRight, colorRight);
             colorPairs.Add(tmpColorPair);
         }
 
         for(int i = firstNumber; i < 1000; i++) {
-            int random = Random.Range(0,5);
+            int random = Random.Range(0,4);
             switch(random) 
             {
                 //ColorPair = (left, left);
