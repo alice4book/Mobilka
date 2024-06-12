@@ -58,9 +58,9 @@ public static class GlobalVar
             comboMultiplier = 1;
         } else {
             int comboLower = (combo/10) * 10;
-            comboMultiplier = comboLower / 10;
+            comboMultiplier = (comboLower / 10) + 1;
         }
-        //Debug.Log(comboMultiplier);
+        Debug.Log(comboMultiplier);
 
     }
 
@@ -70,8 +70,8 @@ public static class GlobalVar
         {
             //Debug.Log("Made 20 lines");
             //Debug.Log(linesMade);
-            coins++;
-            Debug.Log(coins);
+            coins += 10;
+            //Debug.Log(coins);
         }
     }
 

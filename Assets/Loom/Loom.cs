@@ -187,9 +187,9 @@ public class Loom : MonoBehaviour
 
         LoomLine tmpLoomLine;
         if(lineNr % 2 == 0) {
-            tmpLoomLine = Instantiate(loomLine, newLineSpawnSpotLeft.transform.position, newLineSpawnSpotLeft.transform.rotation, parentOfLines.transform);
+            tmpLoomLine = Instantiate(loomLinePrefab1.GetComponent<LoomLine>(), newLineSpawnSpotLeft.transform.position, newLineSpawnSpotLeft.transform.rotation, parentOfLines.transform);
         } else {
-            tmpLoomLine = Instantiate(loomLine, newLineSpawnSpotRight.transform.position, newLineSpawnSpotRight.transform.rotation, parentOfLines.transform);
+            tmpLoomLine = Instantiate(loomLinePrefab2.GetComponent<LoomLine>(), newLineSpawnSpotRight.transform.position, newLineSpawnSpotRight.transform.rotation, parentOfLines.transform);
         }
 
         lineNr++;
