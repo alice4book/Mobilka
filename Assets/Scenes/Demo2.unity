@@ -2482,14 +2482,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.4
       objectReference: {fileID: 0}
-    - target: {fileID: 1252624030870796033, guid: 3a2727f576b84bb42b5bd9bd4c6b197c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1252624030870796033, guid: 3a2727f576b84bb42b5bd9bd4c6b197c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3554153688745647633, guid: 3a2727f576b84bb42b5bd9bd4c6b197c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2530,10 +2522,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3738048352335808000, guid: 3a2727f576b84bb42b5bd9bd4c6b197c, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: f069944aa82e4164cae63649a344a8c1, type: 2}
     - target: {fileID: 8386996904602426377, guid: 3a2727f576b84bb42b5bd9bd4c6b197c, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -3407,41 +3395,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4099609800219761153, guid: 9bc2c89855582164198bd4946f3e2b97, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4099609800219761153, guid: 9bc2c89855582164198bd4946f3e2b97, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4099609800219761153, guid: 9bc2c89855582164198bd4946f3e2b97, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5359943351583339628, guid: 9bc2c89855582164198bd4946f3e2b97, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: bf4cff61b36aa8743a12dab6039910f3, type: 2}
     - target: {fileID: 5607400666708005057, guid: 9bc2c89855582164198bd4946f3e2b97, type: 3}
       propertyPath: m_Name
       value: ShuttleRight
-      objectReference: {fileID: 0}
-    - target: {fileID: 7859238597978994321, guid: 9bc2c89855582164198bd4946f3e2b97, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: a483d20d0a1b3d341a717f01d8df004b, type: 3}
-    - target: {fileID: 7859238597978994321, guid: 9bc2c89855582164198bd4946f3e2b97, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7859238597978994321, guid: 9bc2c89855582164198bd4946f3e2b97, type: 3}
-      propertyPath: m_Color.g
-      value: 0.92481196
-      objectReference: {fileID: 0}
-    - target: {fileID: 7859238597978994321, guid: 9bc2c89855582164198bd4946f3e2b97, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

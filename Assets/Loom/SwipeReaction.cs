@@ -69,6 +69,8 @@ public class SwipeReaction : MonoBehaviour
             // Double swipe
             if (value == 5)
             {
+                shuttleLeft.CorrectHalfMove();
+                shuttleRight.CorrectHalfMove();
                 // Both swipes are correct
                 ProcessCorrectSwipe();
             }

@@ -10,6 +10,7 @@ public class Shuttle : MonoBehaviour
     private int wrongMoveAnimation;
     private int correctMoveAnimation;
     private int idleAnimation;
+    private int correctMoveHalfAnimation;
 
     public bool leftShuttle;
     
@@ -28,10 +29,12 @@ public class Shuttle : MonoBehaviour
             wrongMoveAnimation = Animator.StringToHash("WrongMoveLeftShuttle");
             correctMoveAnimation = Animator.StringToHash("CorrectMoveLeftShuttle");
             idleAnimation = Animator.StringToHash("IdleLeftShuttle");
+            correctMoveHalfAnimation = Animator.StringToHash("CorrectHalfMoveLeftShuttle");
         } else {
             wrongMoveAnimation = Animator.StringToHash("WrongMoveRightShuttle");
             correctMoveAnimation = Animator.StringToHash("CorrectMoveRightShuttle");
             idleAnimation = Animator.StringToHash("IdleRightShuttle");
+            correctMoveHalfAnimation = Animator.StringToHash("CorrectHalfMoveRightShuttle");
         }
     }
 
@@ -49,5 +52,10 @@ public class Shuttle : MonoBehaviour
     public void CorrectMove()
     {
         animator.Play(correctMoveAnimation,0,0);
+    }
+
+    public void CorrectHalfMove()
+    {
+        animator.Play(correctMoveHalfAnimation,0,0);
     }
 }
