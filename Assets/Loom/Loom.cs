@@ -6,6 +6,8 @@ public class Loom : MonoBehaviour
 {
     //[SerializeField] public List<LoomLine> lines;
     public LoomLine loomLine;
+    [SerializeField] private GameObject loomLinePrefab1;
+    [SerializeField] private GameObject loomLinePrefab2;
     public GameObject parentOfLines;
 
     [SerializeField] public List<GameObject> lineSpawnSpots;
@@ -61,9 +63,17 @@ public class Loom : MonoBehaviour
     {
         for(int i = 0; i < lineSpawnSpots.Count; i++)
         {
-            LoomLine tmpLoomLine = Instantiate(loomLine, lineSpawnSpots[i].transform.position, lineSpawnSpots[i].transform.rotation, parentOfLines.transform);
-            lines.Add(tmpLoomLine);
-            lineNr++;
+            if(i % 2 == 0) {
+                GameObject tmpLoomLine1 = Instantiate(loomLinePrefab1, lineSpawnSpots[i].transform.position, lineSpawnSpots[i].transform.rotation, parentOfLines.transform);
+                lines.Add(tmpLoomLine1.GetComponent<LoomLine>());
+                lineNr++;
+            } 
+            else {
+                GameObject tmpLoomLine2 = Instantiate(loomLinePrefab2, lineSpawnSpots[i].transform.position, lineSpawnSpots[i].transform.rotation, parentOfLines.transform);
+                lines.Add(tmpLoomLine2.GetComponent<LoomLine>());
+                lineNr++;
+            }
+
         }
     } 
 
