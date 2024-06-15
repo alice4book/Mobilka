@@ -9,11 +9,11 @@ public class TutorialAnimations : MonoBehaviour
 
     private Animator animator;
 
-    private int idleTextAnimation;
-    private int swipeLeftTextAnimation;
-    private int swipeLeftTextHalfAnimation;
-    private int swipeRightTextAnimation;
-    private int swipeRightTextHalfAnimation;
+    private int idleArrowAnimation;
+    private int swipeFullAnimation;
+    private int swipeHalfAnimation;
+
+    public bool isLeft = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,36 +23,39 @@ public class TutorialAnimations : MonoBehaviour
 
         animator = GetComponent<Animator>();
 
-        idleTextAnimation = Animator.StringToHash("IdleTextAnimation");
-        swipeLeftTextAnimation = Animator.StringToHash("SwipeLeftTextAnimation");
-        swipeLeftTextHalfAnimation = Animator.StringToHash("SwipeLeftTextHalfAnimation");
-        swipeRightTextAnimation = Animator.StringToHash("SwipeRightTextAnimation");
-        swipeRightTextHalfAnimation = Animator.StringToHash("SwipeRightTextHalfAnimation");
+        Debug.Log(animator);
+
+        if(isLeft) 
+        {
+            idleArrowAnimation = Animator.StringToHash("IdleArrowLeft");
+            swipeFullAnimation = Animator.StringToHash("FullSwipeLeft");
+            swipeHalfAnimation = Animator.StringToHash("HalfSwipeLeft");
+        }
+        else 
+        {
+            idleArrowAnimation = Animator.StringToHash("IdleArrowRight");
+            swipeFullAnimation = Animator.StringToHash("FullSwipeRight");
+            swipeHalfAnimation = Animator.StringToHash("HalfSwipeRight");
+        }
+
+
     }
 
     public void Idle()
     {   
         //Debug.Log("HERE");
-        animator.Play(idleTextAnimation);
+        animator.Play(idleArrowAnimation);
     }
 
-    public void SwipeLeft()
+    public void SwipeFull()
     {
-        animator.Play(swipeLeftTextAnimation);
+        //Debug.Log("Here");
+        animator.Play(swipeFullAnimation);
     }
 
-    public void SwipeLeftHalf()
+    public void SwipeHalf()
     {
-        animator.Play(swipeLeftTextHalfAnimation);
+        animator.Play(swipeHalfAnimation);
     }
 
-    public void SwipeRight()
-    {
-        animator.Play(swipeRightTextAnimation);
-    }
-
-    public void SwipeRightHalf()
-    {
-        animator.Play(swipeRightTextHalfAnimation);
-    }
 }

@@ -6,27 +6,22 @@ using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
-    [SerializeField] private TutorialAnimations tutorialTextAnimations;
-    [SerializeField] private TutorialAnimations tutorialDoubleLeftTextAnimations;
-    [SerializeField] private TutorialAnimations tutorialDoubleRightTextAnimations;
+    [SerializeField] private TutorialAnimations tutorialLeft;
+    [SerializeField] private TutorialAnimations tutorialRight;
 
-    TextMeshProUGUI tutorialText;
-    TextMeshProUGUI tutorialDoubleLeftText;
-    TextMeshProUGUI tutorialDoubleRightText;
+    GameObject tutorialArrowLeft;
+    GameObject tutorialArrowRight;
 
     Color tmpColor;
 
     // Start is called before the first frame update
     void Start()
     {
-        tutorialText = tutorialTextAnimations.gameObject.GetComponent<TextMeshProUGUI>();
-        tutorialDoubleLeftText = tutorialDoubleLeftTextAnimations.gameObject.GetComponent<TextMeshProUGUI>();
-        tutorialDoubleRightText = tutorialDoubleRightTextAnimations.gameObject.GetComponent<TextMeshProUGUI>();
+        tutorialArrowLeft = tutorialLeft.gameObject;
+        tutorialArrowRight = tutorialRight.gameObject;
 
-
-        //tutorialTextAnimations.gameObject.SetActive(false);
-        //tutorialDoubleLeftTextAnimations.gameObject.SetActive(false);
-        //tutorialDoubleRightTextAnimations.gameObject.SetActive(false);
+        tutorialArrowLeft.SetActive(false);
+        tutorialArrowRight.SetActive(false);
     }
 
     // Update is called once per frame
@@ -35,51 +30,53 @@ public class TutorialManager : MonoBehaviour
         if(GlobalVar.linesMade  == 0 && GlobalVar.numberOfGames == 0) 
         {
             //Debug.Log("FIRST");
-            tutorialTextAnimations.gameObject.SetActive(true);
-            tutorialTextAnimations.SwipeRight();
+            tutorialArrowLeft.SetActive(true);
+            tutorialLeft.SwipeFull();
         } 
         else if(GlobalVar.linesMade  == 1 && GlobalVar.numberOfGames == 0)
         {
             //Debug.Log("SECOND");
-            tutorialText.text = "Swipe left";
-            tutorialTextAnimations.SwipeLeft();
+            tutorialArrowLeft.GetComponent<Animator>().enabled = false;
+            tutorialArrowLeft.SetActive(false);
+
+            tutorialArrowRight.SetActive(true);
+            tutorialRight.SwipeFull();
         } 
         else if (GlobalVar.linesMade  == 2 && GlobalVar.numberOfGames == 0)
         {
-            tutorialTextAnimations.gameObject.GetComponent<Animator>().enabled = false;
-            tutorialTextAnimations.gameObject.SetActive(false);
+            tutorialArrowLeft.GetComponent<Animator>().enabled = true;
+            tutorialArrowLeft.SetActive(true);
 
-            tmpColor = tutorialDoubleLeftText.color;
-            tmpColor.a = 1;
-            tutorialDoubleLeftText.color = tmpColor;
+            //tmpColor = tutorialArrowLeft.color;
+            //tmpColor.a = 1;
+            //tutorialArrowLeft.color = tmpColor;
 
-            tmpColor = tutorialDoubleRightText.color;
-            tmpColor.a = 1;
-            tutorialDoubleRightText.color = tmpColor;
+            //tmpColor = tutorialArrowRight.color;
+            //tmpColor.a = 1;
+            //tutorialArrowRight.color = tmpColor;
 
-            //tutorialDoubleLeftTextAnimations.gameObject.SetActive(true);
-            //tutorialDoubleRightTextAnimations.gameObject.SetActive(true);
-            tutorialDoubleLeftTextAnimations.SwipeRightHalf();
-            tutorialDoubleRightTextAnimations.SwipeLeftHalf();
+            //tutorialLeft.gameObject.SetActive(true);
+            //tutorialRight.gameObject.SetActive(true);
+
+            tutorialLeft.SwipeHalf();
+            tutorialRight.SwipeHalf();
 
         } else if (GlobalVar.linesMade > 2 && GlobalVar.numberOfGames == 0)
         {
-            //tutorialDoubleLeftTextAnimations.Idle();
-            //tutorialDoubleRightTextAnimations.Idle();
-            tutorialDoubleLeftTextAnimations.gameObject.GetComponent<Animator>().enabled = false;
-            tutorialDoubleRightTextAnimations.gameObject.GetComponent<Animator>().enabled = false;
-            tutorialDoubleLeftTextAnimations.gameObject.SetActive(false);
-            tutorialDoubleRightTextAnimations.gameObject.SetActive(false);
+            //tutorialLeft.Idle();
+            //tutorialRight.Idle();
+            tutorialArrowLeft.GetComponent<Animator>().enabled = false;
+            tutorialArrowRight.GetComponent<Animator>().enabled = false;
+            tutorialArrowLeft.SetActive(false);
+            tutorialArrowRight.SetActive(false);
         }
 
         if(GlobalVar.numberOfGames > 0) 
         {
-            tutorialTextAnimations.gameObject.GetComponent<Animator>().enabled = false;
-            tutorialDoubleLeftTextAnimations.gameObject.GetComponent<Animator>().enabled = false;
-            tutorialDoubleRightTextAnimations.gameObject.GetComponent<Animator>().enabled = false;
-            tutorialTextAnimations.gameObject.SetActive(false);
-            tutorialDoubleLeftTextAnimations.gameObject.SetActive(false);
-            tutorialDoubleRightTextAnimations.gameObject.SetActive(false);
+            tutorialArrowLeft.GetComponent<Animator>().enabled = false;
+            tutorialArrowRight.GetComponent<Animator>().enabled = false;
+            tutorialArrowLeft.SetActive(false);
+            tutorialArrowRight.SetActive(false);
         }
     }
 }
