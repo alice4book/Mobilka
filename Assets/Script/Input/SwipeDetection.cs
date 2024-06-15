@@ -1,15 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
 
 public class SwipeDetection : MonoBehaviour
 {
     #region Variables
-    private Vector2 _end;
     private Vector2 _swipeVector;
-    private Vector2 _end2nd;
     private Vector2 _swipeVector2nd;
     private bool _bSingle;
     private bool _bDouble;
@@ -53,7 +52,6 @@ public class SwipeDetection : MonoBehaviour
                 || primary.phase == TouchPhase.Canceled
                 || primary.phase == TouchPhase.Ended)
             {
-                _end = GetTouchPosition(0);
                 _swipeVector = primary.screenPosition - primary.startScreenPosition;
                 if (_swipeVector.magnitude > _minSwipeLength)
                 {
@@ -74,13 +72,11 @@ public class SwipeDetection : MonoBehaviour
             if (primary.history.Count >= 1)
             {
                 _swipeVector = primary.screenPosition - primary.startScreenPosition;
-                _end = primary.screenPosition;
                 _bSingle = true;
             }
             if (secondary.history.Count >= 1)
             { 
                 _swipeVector2nd = secondary.screenPosition - secondary.startScreenPosition;
-                _end2nd = secondary.screenPosition;
                 _bDouble = true;
             }
             if(_bSingle && _bDouble && (secondary.phase == TouchPhase.Ended || secondary.phase == TouchPhase.Canceled || primary.phase == TouchPhase.Ended || primary.phase == TouchPhase.Canceled))
@@ -92,11 +88,31 @@ public class SwipeDetection : MonoBehaviour
 
     private void DoubleSwipeDir()
     {
-        // Ruch w lewo & w prawo
-       if ((_swipeVector.x > 0 && _swipeVector2nd.x < 0 && _end.x < _end2nd.x) || (_swipeVector2nd.x > 0 && _swipeVector.x < 0 && _end.x > _end2nd.x))
+       if ((_swipeVector.x > 0 && _swipeVector2nd.x < 0) || (_swipeVector2nd.x > 0 && _swipeVector.x < 0))
        {
             OnSwipeDelegate?.Invoke(5);
        }
+    }
+
+    public void DebugDoubleSwipeDir(InputAction.CallbackContext ctx)
+    {
+        if (Touch.activeTouches.Count > 0)
+        {
+            Touch primary = Touch.activeTouches[0];
+            // Dziwny bug nie widzi TouchPhase.Ended, ale na podniesieniu palca widzi Moved lub Stationary
+            if (primary.phase == TouchPhase.Stationary
+                || primary.phase == TouchPhase.Moved
+                || primary.phase == TouchPhase.Canceled
+                || primary.phase == TouchPhase.Ended)
+            {
+                _swipeVector = primary.screenPosition - primary.startScreenPosition;
+                if (_swipeVector.magnitude < _minSwipeLength)
+                {
+                    OnSwipeDelegate?.Invoke(5);
+                    _swipeVector = Vector3.zero;
+                }
+            }
+        }
     }
 
     private void CountSwipeDir()
