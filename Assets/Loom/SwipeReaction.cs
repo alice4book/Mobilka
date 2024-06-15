@@ -73,6 +73,15 @@ public class SwipeReaction : MonoBehaviour
                 shuttleRight.CorrectHalfMove();
                 // Both swipes are correct
                 ProcessCorrectSwipe();
+            } else
+            if (value == 1)
+            {
+                shuttleLeft.WrongMove();
+            }
+            else
+            if (value == 2)
+            {
+                shuttleRight.WrongMove();
             }
             else
             {
