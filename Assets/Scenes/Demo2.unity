@@ -1040,6 +1040,7 @@ MonoBehaviour:
   timeSpeed: 1
   minTimeSpeed: 1
   maxTimeSpeed: 8
+  _whenWarningStarts: 3
   loom: {fileID: 2118616431}
   isTimeRunning: 0
 --- !u!1 &647513502
@@ -1618,7 +1619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76cc493b29c582a4a8a71897bb57c75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minSwipeLength: 0
+  _minSwipeLength: 0.01
 --- !u!4 &1149517082
 Transform:
   m_ObjectHideFlags: 0
@@ -1641,12 +1642,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149517078}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75ce57c7f3a19664991ab3439e1d22e7, type: 3}
+  m_Script: {fileID: 11500000, guid: be6f2326c7de2434f86748a22908fe9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textMeshe: {fileID: 0}
+  shader: {fileID: 4800000, guid: d021a21037d0a3545bbfde9053a63f78, type: 3}
+  feathering: 0.5
+  radius: 1.25
+  maxRadius: 0.7
+  tintColor: {r: 0.7294118, g: 0, b: 0.3137255, a: 0.83137256}
 --- !u!1 &1184097994
 GameObject:
   m_ObjectHideFlags: 0
