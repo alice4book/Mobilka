@@ -31,6 +31,8 @@ public class Loom : MonoBehaviour
 
     bool isMoving = false;
 
+    public float distanceToMove = 0.4f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -168,7 +170,7 @@ public class Loom : MonoBehaviour
     private IEnumerator MoveLinesCoroutine()
     {
         Vector3 startPosition = parentOfLines.transform.position;
-        Vector3 endPosition = new Vector3(startPosition.x, startPosition.y - 0.5f, startPosition.z);
+        Vector3 endPosition = new Vector3(startPosition.x, startPosition.y - distanceToMove, startPosition.z);
         float elapsedTime = 0;
 
         while (elapsedTime < moveDuration)
