@@ -109,7 +109,7 @@ public class SwipeReaction : MonoBehaviour
         GlobalVar.AddToScore();
         GlobalVar.ManageCoins();
 
-        if((GlobalVar.linesMade  == 3 && GlobalVar.numberOfGames == 0) || (GlobalVar.linesMade  == 1 && GlobalVar.numberOfGames > 0)) {
+        if((GlobalVar.linesMade  == 3 && GlobalVar.fromMenu == true) || (GlobalVar.linesMade  == 1 && GlobalVar.fromMenu == false)) {
             timerController.isTimeRunning = true;
         }
 

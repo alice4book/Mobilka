@@ -29,6 +29,9 @@ public static class GlobalVar
     //is music on
     public static bool musicOn = true;
 
+    //was the game started from menu (true) or gameover (false)
+    public static bool fromMenu = true;
+
     public static void AddToScore()
     {
         gameScore = gameScore + (1 * comboMultiplier);

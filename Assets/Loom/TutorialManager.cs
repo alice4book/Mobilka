@@ -27,13 +27,13 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GlobalVar.linesMade  == 0 && GlobalVar.numberOfGames == 0) 
+        if(GlobalVar.linesMade  == 0 && GlobalVar.fromMenu == true) 
         {
             //Debug.Log("FIRST");
             tutorialArrowLeft.SetActive(true);
             tutorialLeft.SwipeFull();
         } 
-        else if(GlobalVar.linesMade  == 1 && GlobalVar.numberOfGames == 0)
+        else if(GlobalVar.linesMade  == 1 && GlobalVar.fromMenu == true)
         {
             //Debug.Log("SECOND");
             tutorialArrowLeft.GetComponent<Animator>().enabled = false;
@@ -42,7 +42,7 @@ public class TutorialManager : MonoBehaviour
             tutorialArrowRight.SetActive(true);
             tutorialRight.SwipeFull();
         } 
-        else if (GlobalVar.linesMade  == 2 && GlobalVar.numberOfGames == 0)
+        else if (GlobalVar.linesMade  == 2 && GlobalVar.fromMenu == true)
         {
             tutorialArrowLeft.GetComponent<Animator>().enabled = true;
             tutorialArrowLeft.SetActive(true);
@@ -61,7 +61,7 @@ public class TutorialManager : MonoBehaviour
             tutorialLeft.SwipeHalf();
             tutorialRight.SwipeHalf();
 
-        } else if (GlobalVar.linesMade > 2 && GlobalVar.numberOfGames == 0)
+        } else if (GlobalVar.linesMade > 2 && GlobalVar.fromMenu == true)
         {
             //tutorialLeft.Idle();
             //tutorialRight.Idle();
@@ -71,7 +71,7 @@ public class TutorialManager : MonoBehaviour
             tutorialArrowRight.SetActive(false);
         }
 
-        if(GlobalVar.numberOfGames > 0) 
+        if(GlobalVar.fromMenu == false) 
         {
             tutorialArrowLeft.GetComponent<Animator>().enabled = false;
             tutorialArrowRight.GetComponent<Animator>().enabled = false;

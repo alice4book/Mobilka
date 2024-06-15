@@ -12,6 +12,14 @@ public class Manu_NewGameButton : MonoBehaviour
     {
         if (Demo2)
         {
+            if(SceneManager.GetActiveScene().name == "Menu") 
+            {
+                GlobalVar.fromMenu = true;
+            } 
+            else 
+            {
+                GlobalVar.fromMenu = false;
+            }
             SceneManager.LoadScene("Demo2");
         }
         if (Menu)
