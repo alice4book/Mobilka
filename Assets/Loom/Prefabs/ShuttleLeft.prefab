@@ -67,6 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ab154dd22da0f4b996891be7ed9c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _riprip: {fileID: 8300000, guid: 6c49937747b9f86408d9ad9d71cc59dc, type: 3}
+  _shuttle: {fileID: 8300000, guid: 79103c1d905960b4cb8103b1937f2bdf, type: 3}
   leftShuttle: 1
 --- !u!1 &6628809472482018510
 GameObject:

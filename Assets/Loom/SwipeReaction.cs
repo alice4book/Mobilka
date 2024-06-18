@@ -61,6 +61,11 @@ public class SwipeReaction : MonoBehaviour
                 if(value == 2 && currentLeftColorVec != rightColorVec) {
                     shuttleRight.WrongMove();
                 }
+                if(value == 5)
+                {
+                    shuttleLeft.WrongMove();
+                    shuttleRight.WrongMove();
+                }
                 ProcessIncorrectSwipe();
             }
         }
@@ -77,11 +82,13 @@ public class SwipeReaction : MonoBehaviour
             if (value == 1)
             {
                 shuttleLeft.WrongMove();
+                ProcessIncorrectSwipe();
             }
             else
             if (value == 2)
             {
                 shuttleRight.WrongMove();
+                ProcessIncorrectSwipe();
             }
             else
             {

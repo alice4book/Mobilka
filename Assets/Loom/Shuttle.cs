@@ -7,10 +7,15 @@ public class Shuttle : MonoBehaviour
     
     private Animator animator;
 
+    [SerializeField] private AudioClip _riprip;
+    [SerializeField] private AudioClip _shuttle;
+    private AudioSource _audioSource;
+
     private int wrongMoveAnimation;
     private int correctMoveAnimation;
     private int idleAnimation;
     private int correctMoveHalfAnimation;
+
 
     public bool leftShuttle;
     
@@ -19,7 +24,9 @@ public class Shuttle : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
-        if(leftShuttle) {
+        _audioSource = GetComponent<AudioSource>();
+
+        if (leftShuttle) {
             GetComponentInChildren<SpriteRenderer>().color = GlobalVar.color1;
         } else {
             GetComponentInChildren<SpriteRenderer>().color = GlobalVar.color2;
@@ -46,16 +53,22 @@ public class Shuttle : MonoBehaviour
     public void WrongMove() 
     {
         animator.Play(wrongMoveAnimation,0,0);
+        _audioSource.clip = _riprip;
+        _audioSource.Play();
         Handheld.Vibrate();
     }
 
     public void CorrectMove()
     {
         animator.Play(correctMoveAnimation,0,0);
+        _audioSource.clip = _shuttle;
+        _audioSource.Play();
     }
 
     public void CorrectHalfMove()
     {
         animator.Play(correctMoveHalfAnimation,0,0);
+        _audioSource.clip = _shuttle;
+        _audioSource.Play();
     }
 }
