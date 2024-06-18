@@ -31,6 +31,7 @@ public class LoomLine : MonoBehaviour
     public void WrongMove() 
     {
         animator.Play(wrongMoveAnimation,0,0);
+
     }
     public void CurrentLine()
     {

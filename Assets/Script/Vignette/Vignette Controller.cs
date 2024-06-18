@@ -9,7 +9,7 @@ public class VignetteController : MonoBehaviour
     private Material _material;
     public float feathering;
     public float radius;
-    public float maxRadius;
+    public float minRadius;
     public Color tintColor;
 
 

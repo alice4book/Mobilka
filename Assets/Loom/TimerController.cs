@@ -1,10 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 
 public class TimerController : MonoBehaviour
 {
@@ -21,7 +19,8 @@ public class TimerController : MonoBehaviour
     #region Warning
     [SerializeField] private float _whenWarningStarts;
     private bool _bWarning;
-    private Coroutine vignetteCoroutine;
+    private AudioSource _audioSource;
+    private Coroutine _vignetteCoroutine;
     #endregion
 
 
@@ -36,7 +35,8 @@ public class TimerController : MonoBehaviour
         isTimeRunning = false;
         timeRemaining = startingTime;
         GlobalVar.linesMade = 0;
-        vignetteCoroutine = null;
+        _vignetteCoroutine = null;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -57,7 +57,7 @@ public class TimerController : MonoBehaviour
             {
                 StartWarning();
             }
-            if (_bWarning && vignetteCoroutine != null  && _whenWarningStarts < timeRemaining)
+            if (_bWarning && _vignetteCoroutine != null  && _whenWarningStarts < timeRemaining)
             {
                 StopWarning();
             }
@@ -107,18 +107,20 @@ public class TimerController : MonoBehaviour
         GameObject mainCamObj = mainCam.gameObject;
         VignetteController vignette = mainCamObj.GetComponent<VignetteController>();
         vignette.radius = 1.25f;
+        _audioSource.Play();
         if (vignette != null)
         {
-            vignetteCoroutine = StartCoroutine(Vignette(vignette));
+            _vignetteCoroutine = StartCoroutine(Vignette(vignette));
         }
     }
 
     void StopWarning()
     {
         //Stop Warning
-        StopCoroutine(vignetteCoroutine);
-        vignetteCoroutine = null;
+        StopCoroutine(_vignetteCoroutine);
+        _vignetteCoroutine = null;
         _bWarning = false;
+        _audioSource.Stop();
 
         Camera mainCam = Camera.main;
         GameObject mainCamObj = mainCam.gameObject;
@@ -128,10 +130,20 @@ public class TimerController : MonoBehaviour
 
     IEnumerator Vignette(VignetteController vignette)
     {
-        while (vignette.maxRadius < vignette.radius)
+        float initialRadius = vignette.radius;
+
+        while (vignette.radius > vignette.minRadius)
         {
             yield return new WaitForSeconds(0.01f);
-            vignette.radius -= 0.01f;
+
+            // Obliczanie proporcji pozosta³ego czasu do czasu rozpoczêcia ostrze¿enia
+            float t = Mathf.Clamp01(timeRemaining / _whenWarningStarts);
+
+            // Interpolacja liniowa miêdzy initialRadius a minRadius
+            vignette.radius = Mathf.Lerp(vignette.minRadius, initialRadius, t);
+
+            // Zmniejszanie timeRemaining
+            timeRemaining -= 0.01f;
         }
     }
 }
