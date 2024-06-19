@@ -27,6 +27,9 @@ public class TimerController : MonoBehaviour
     public Loom loom;
 
     public bool isTimeRunning;
+
+    [SerializeField] GameObject playerInput;
+    [SerializeField] float delayTime = 2f;
     //public GameOverMenu gameOverMenu;
 
     // Start is called before the first frame update
@@ -49,7 +52,9 @@ public class TimerController : MonoBehaviour
                 timeRemaining -= Time.deltaTime * timeSpeed;
                 DisplayTime(timeRemaining);
             } else {
-                SceneManager.LoadScene("GameOver");
+
+                playerInput.SetActive(false);
+                Invoke("LoadGameOver", delayTime);
                 //gameOverMenu.GameOverMenuObj.SetActive(true);
             }
 
@@ -62,6 +67,11 @@ public class TimerController : MonoBehaviour
                 StopWarning();
             }
         }
+    }
+
+    void LoadGameOver()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 
     void DisplayTime(float timeToDisplay)  
@@ -136,10 +146,10 @@ public class TimerController : MonoBehaviour
         {
             yield return new WaitForSeconds(0.01f);
 
-            // Obliczanie proporcji pozosta³ego czasu do czasu rozpoczêcia ostrze¿enia
+            // Obliczanie proporcji pozostaï¿½ego czasu do czasu rozpoczï¿½cia ostrzeï¿½enia
             float t = Mathf.Clamp01(timeRemaining / _whenWarningStarts);
 
-            // Interpolacja liniowa miêdzy initialRadius a minRadius
+            // Interpolacja liniowa miï¿½dzy initialRadius a minRadius
             vignette.radius = Mathf.Lerp(vignette.minRadius, initialRadius, t);
 
             // Zmniejszanie timeRemaining

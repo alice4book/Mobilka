@@ -1358,6 +1358,8 @@ MonoBehaviour:
   _whenWarningStarts: 5
   loom: {fileID: 2118616431}
   isTimeRunning: 0
+  playerInput: {fileID: 272044063}
+  delayTime: 2
 --- !u!82 &503381648
 AudioSource:
   m_ObjectHideFlags: 0
