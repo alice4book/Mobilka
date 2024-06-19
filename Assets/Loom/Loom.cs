@@ -97,7 +97,7 @@ public class Loom : MonoBehaviour
         Color tmpColor = new Color(1.0f,0.0f,0.0f,0.5f);
 
         ColorPair tmpColorPair = new ColorPair(tmpColor, tmpColor);
-        if(GlobalVar.numberOfGames == 0) {
+        if(GlobalVar.fromMenu == true) {
             //Debug.Log("First GAME");
             firstNumber = 3;
             tmpColorPair = new ColorPair(colorLeft, colorLeft);
