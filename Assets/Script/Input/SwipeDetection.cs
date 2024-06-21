@@ -97,10 +97,10 @@ public class SwipeDetection : MonoBehaviour
 
     private void DoubleSwipeDir()
     {
-        if ((_swipeVector.x >= 0 && _swipeVector2nd.x <= 0) || (_swipeVector2nd.x >= 0 && _swipeVector.x <= 0))
-        {
+        //if ((_swipeVector.x >= 0 && _swipeVector2nd.x <= 0) || (_swipeVector2nd.x >= 0 && _swipeVector.x <= 0))
+        //{
              OnSwipeDelegate?.Invoke(5);
-        }
+        //}
     }
 
     public void DebugDoubleSwipeDir(InputAction.CallbackContext ctx)
