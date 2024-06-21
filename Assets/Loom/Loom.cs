@@ -86,6 +86,7 @@ public class Loom : MonoBehaviour
             for(int i = 0; i < lines.Count; i++) {
                 lines[i].lineLeft.GetComponent<SpriteRenderer>().color = colorPairs[colorNr].colourLeft;
                 lines[i].lineRight.GetComponent<SpriteRenderer>().color = colorPairs[colorNr].colourRight;
+                lines[i].outline.GetComponent<SpriteRenderer>().color = colorPairs[colorNr].colourRight;
                 colorNr++;
             }
         }
@@ -198,6 +199,7 @@ public class Loom : MonoBehaviour
         //Debug.Log(lineNr);
         tmpLoomLine.lineLeft.GetComponent<SpriteRenderer>().color = colorPairs[lineNr].colourLeft;
         tmpLoomLine.lineRight.GetComponent<SpriteRenderer>().color = colorPairs[lineNr].colourRight;
+        tmpLoomLine.outline.GetComponent<SpriteRenderer>().color = colorPairs[lineNr].colourRight;
         lines.Add(tmpLoomLine);
     }
 
