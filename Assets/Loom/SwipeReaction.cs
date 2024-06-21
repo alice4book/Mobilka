@@ -132,8 +132,12 @@ public class SwipeReaction : MonoBehaviour
         timerController.AddTime();
         Color lineLeftColor = loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color;
         Color lineRightColor = loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color;
+        Color outlineLeftColor = lineLeftColor * loom.outlineBase;
+        Color outlineRightColor = lineRightColor * loom.outlineBase;
         loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color = new Color(lineLeftColor.r, lineLeftColor.g, lineLeftColor.b, 1.0f);
         loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color = new Color(lineRightColor.r, lineRightColor.g, lineRightColor.b, 1.0f);
+        loom.lines[0].outlineL.GetComponent<SpriteRenderer>().color = new Color(outlineLeftColor.r, outlineLeftColor.g, outlineLeftColor.b, 1.0f);
+        loom.lines[0].outlineR.GetComponent<SpriteRenderer>().color = new Color(outlineRightColor.r, outlineRightColor.g, outlineRightColor.b, 1.0f);
         loom.MoveLines();
         textMesh.text = GlobalVar.gameScore.ToString();
     }

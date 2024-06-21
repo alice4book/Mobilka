@@ -22,6 +22,8 @@ public class Loom : MonoBehaviour
     [SerializeField] Color colorLeft;
     [SerializeField] Color colorRight;
 
+    [SerializeField] public Color outlineBase;
+
     //lerp
     public float moveDistance = 0.5f;
     public float moveDuration = 0.2f;
@@ -86,7 +88,8 @@ public class Loom : MonoBehaviour
             for(int i = 0; i < lines.Count; i++) {
                 lines[i].lineLeft.GetComponent<SpriteRenderer>().color = colorPairs[colorNr].colourLeft;
                 lines[i].lineRight.GetComponent<SpriteRenderer>().color = colorPairs[colorNr].colourRight;
-                lines[i].outline.GetComponent<SpriteRenderer>().color = colorPairs[colorNr].colourRight;
+                lines[i].outlineL.GetComponent<SpriteRenderer>().color = colorPairs[colorNr].colourLeft * outlineBase;
+                lines[i].outlineR.GetComponent<SpriteRenderer>().color = colorPairs[colorNr].colourRight * outlineBase;
                 colorNr++;
             }
         }
@@ -199,7 +202,8 @@ public class Loom : MonoBehaviour
         //Debug.Log(lineNr);
         tmpLoomLine.lineLeft.GetComponent<SpriteRenderer>().color = colorPairs[lineNr].colourLeft;
         tmpLoomLine.lineRight.GetComponent<SpriteRenderer>().color = colorPairs[lineNr].colourRight;
-        tmpLoomLine.outline.GetComponent<SpriteRenderer>().color = colorPairs[lineNr].colourRight;
+        tmpLoomLine.outlineL.GetComponent<SpriteRenderer>().color = colorPairs[lineNr].colourLeft * outlineBase;
+        tmpLoomLine.outlineR.GetComponent<SpriteRenderer>().color = colorPairs[lineNr].colourRight * outlineBase;
         lines.Add(tmpLoomLine);
     }
 

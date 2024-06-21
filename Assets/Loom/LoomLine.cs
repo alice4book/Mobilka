@@ -6,7 +6,8 @@ public class LoomLine : MonoBehaviour
 {
     [SerializeField] public GameObject lineLeft;
     [SerializeField] public GameObject lineRight;
-    [SerializeField] public GameObject outline;
+    [SerializeField] public GameObject outlineL;
+    [SerializeField] public GameObject outlineR;
     
     private Animator animator;
 
