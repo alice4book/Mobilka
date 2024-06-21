@@ -16,6 +16,8 @@ public class TimerController : MonoBehaviour
     public float minTimeSpeed = 1.0f;
     public float maxTimeSpeed = 8.0f;
 
+    [SerializeField] TimerAnimation timerAnimation;
+
     #region Warning
     [SerializeField] private float _whenWarningStarts;
     private bool _bWarning;
@@ -118,6 +120,7 @@ public class TimerController : MonoBehaviour
         VignetteController vignette = mainCamObj.GetComponent<VignetteController>();
         vignette.radius = 1.25f;
         _audioSource.Play();
+        timerAnimation.NoTime();
         if (vignette != null)
         {
             _vignetteCoroutine = StartCoroutine(Vignette(vignette));
@@ -131,6 +134,7 @@ public class TimerController : MonoBehaviour
         _vignetteCoroutine = null;
         _bWarning = false;
         _audioSource.Stop();
+        timerAnimation.IdleTime();
 
         Camera mainCam = Camera.main;
         GameObject mainCamObj = mainCam.gameObject;

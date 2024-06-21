@@ -405,6 +405,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 186397952}
+  - component: {fileID: 186397954}
+  - component: {fileID: 186397953}
   m_Layer: 5
   m_Name: TimerElements
   m_TagString: Untagged
@@ -434,6 +436,39 @@ RectTransform:
   m_AnchoredPosition: {x: 18, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &186397953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186397951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fe5676cf51c333459cf892c2a7ece0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &186397954
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186397951}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 48ea32677eb622f4384ddf7876790cdd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &212994009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1430,6 +1465,7 @@ MonoBehaviour:
   timeSpeed: 1
   minTimeSpeed: 1
   maxTimeSpeed: 8
+  timerAnimation: {fileID: 186397953}
   _whenWarningStarts: 5
   loom: {fileID: 2118616431}
   isTimeRunning: 0
