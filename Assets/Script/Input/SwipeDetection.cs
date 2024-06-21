@@ -9,7 +9,6 @@ public class SwipeDetection : MonoBehaviour
     #region Variables
     private Vector2 _swipeVector;
     private Vector2 _swipeVector2nd;
-    private bool _bFirst;
     private bool _bSecond;
     private bool _bDouble;
     [SerializeField] private float _minSwipeLength;
@@ -26,7 +25,6 @@ public class SwipeDetection : MonoBehaviour
         _minSwipeLength = 0.1f;
         _bDouble = false;
         _bSecond = false;
-        _bFirst = false;
         if (!EnhancedTouchSupport.enabled)
             EnhancedTouchSupport.Enable();
 
@@ -44,15 +42,13 @@ public class SwipeDetection : MonoBehaviour
         return Vector2.zero;
     }
 
-
     public void OnSwipe(InputAction.CallbackContext ctx)
     {
         if (_bDouble) 
-            return; 
-        if(_bSecond || _bFirst)
+            return;
+        if (_bSecond)
         {
             _bSecond = false;
-            _bFirst = false;
             return;
         }
         
@@ -86,23 +82,14 @@ public class SwipeDetection : MonoBehaviour
                 _bDouble = true;
             }
 
-            if (_primary.history.Count >= 1)
-            {
-                _swipeVector = _primary.screenPosition - _primary.startScreenPosition;
-                _bFirst = true;
-            }
-            if (_secondary.history.Count >= 1)
-            { 
-                _swipeVector2nd = _secondary.screenPosition - _secondary.startScreenPosition;
-                _bSecond = true;
-            }
-            if(_bFirst && _bSecond && _bDouble && 
-                (_secondary.phase == TouchPhase.Ended || _secondary.phase == TouchPhase.Canceled || 
+            if(_bDouble && 
+                (_secondary.phase == TouchPhase.Ended || _secondary.phase == TouchPhase.Canceled ||
                 _primary.phase == TouchPhase.Ended || _primary.phase == TouchPhase.Canceled))
             {
                 DoubleSwipeDir();
                 _primary = new Touch();
                 _secondary = new Touch();
+                _bSecond = true;
                 _bDouble = false;
             }
         }
