@@ -75,12 +75,9 @@ public class SwipeDetection : MonoBehaviour
     {
         if (Touch.activeTouches.Count > 1)
         {
-            if (_primary.finger == null || _secondary.finger == null)
-            {
-                _primary = Touch.activeTouches[0];
-                _secondary = Touch.activeTouches[1];
-                _bDouble = true;
-            }
+            _primary = Touch.activeTouches[0];
+            _secondary = Touch.activeTouches[1];
+            _bDouble = true;
 
             if(_bDouble && 
                 (_secondary.phase == TouchPhase.Ended || _secondary.phase == TouchPhase.Canceled ||
