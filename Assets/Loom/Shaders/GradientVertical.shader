@@ -1,9 +1,10 @@
-Shader "Unlit/Gradient"
+Shader "Unlit/TransparentGradient"
 {
     Properties
     {
-        _LeftColour("Left Gradient Colour: ", Color) = (1,1,1,1)
-        _RightColour("Right Gradient Colour: ", Color) = (0,0,0,1)
+        _MainTex ("Texture", 2D) = "white" {}
+        _TopColour ("Top Gradient Colour", Color) = (1,1,1,1)
+        _BottomColour ("Bottom Gradient Colour", Color) = (0,0,0,1)
     }
     SubShader
     {
@@ -18,7 +19,6 @@ Shader "Unlit/Gradient"
             #pragma vertex vert
             #pragma fragment frag
 
-
             #include "UnityCG.cginc"
 
             struct appdata
@@ -29,26 +29,29 @@ Shader "Unlit/Gradient"
 
             struct v2f
             {
-                float4 colour : TEXCOORD0;
-
+                float2 uv : TEXCOORD0;
+                float4 gradientColor : TEXCOORD1;
                 float4 vertex : SV_POSITION;
             };
 
-            fixed4 _LeftColour;
-            fixed4 _RightColour;
+            sampler2D _MainTex;
+            fixed4 _TopColour;
+            fixed4 _BottomColour;
 
             v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.colour = lerp(_LeftColour, _RightColour, v.uv.x);
-
+                o.uv = v.uv;
+                o.gradientColor = lerp(_BottomColour, _TopColour, v.uv.y);
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
-                return i.colour;
+                fixed4 texColor = tex2D(_MainTex, i.uv);
+                fixed4 finalColor = texColor * i.gradientColor;
+                return finalColor;
             }
             ENDCG
         }
