@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using TouchPhase = UnityEngine.InputSystem.TouchPhase;
+using TMPro;
 
 public class SwipeDetection : MonoBehaviour
 {
@@ -20,6 +21,11 @@ public class SwipeDetection : MonoBehaviour
     private Touch _secondary;
     #endregion
 
+    public TMP_Text testText;
+    public TMP_Text testText2;
+    public TMP_Text testText3;
+    public TMP_Text testText4;
+
     private void Awake()
     {
         _minSwipeLength = 0.1f;
@@ -30,6 +36,35 @@ public class SwipeDetection : MonoBehaviour
 
         _primary = new Touch();
         _secondary = new Touch();
+    }
+
+    private void Update()
+    {
+        //testText.text = Touch.activeTouches.Count.ToString();
+
+        //testText3.text = _primary.phase.ToString();
+        //testText4.text = _secondary.phase.ToString();
+
+        if(_bDouble && Touch.activeTouches.Count < 2)
+        {
+            //testText2.text = "double LESS";
+            DoubleSwipeDir();
+            _primary = new Touch();
+            _secondary = new Touch();
+            _bSecond = true;
+            _bDouble = false;
+            
+        } 
+        /*
+        else {
+            if(_bDouble) {
+                testText2.text = "double TWO";
+            } else 
+            {
+                testText2.text = "not";
+            }   
+        }
+        */
     }
 
     private Vector2 GetTouchPosition(int index)
@@ -79,6 +114,7 @@ public class SwipeDetection : MonoBehaviour
             _secondary = Touch.activeTouches[1];
             _bDouble = true;
 
+            /*
             if(_bDouble && 
                 (_secondary.phase == TouchPhase.Ended || _secondary.phase == TouchPhase.Canceled ||
                 _primary.phase == TouchPhase.Ended || _primary.phase == TouchPhase.Canceled))
@@ -89,6 +125,7 @@ public class SwipeDetection : MonoBehaviour
                 _bSecond = true;
                 _bDouble = false;
             }
+            */
         }
     }
 
