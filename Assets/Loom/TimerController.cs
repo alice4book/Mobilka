@@ -17,6 +17,7 @@ public class TimerController : MonoBehaviour
     public float maxTimeSpeed = 8.0f;
 
     [SerializeField] TimerAnimation timerAnimation;
+    [SerializeField] TimesUpAnimation timesUpAnimation;
 
     #region Warning
     [SerializeField] private float _whenWarningStarts;
@@ -32,6 +33,8 @@ public class TimerController : MonoBehaviour
 
     [SerializeField] GameObject playerInput;
     [SerializeField] float delayTime = 2f;
+
+    private bool _timesUp = false;
     //public GameOverMenu gameOverMenu;
 
     // Start is called before the first frame update
@@ -42,6 +45,7 @@ public class TimerController : MonoBehaviour
         GlobalVar.linesMade = 0;
         _vignetteCoroutine = null;
         _audioSource = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -56,6 +60,11 @@ public class TimerController : MonoBehaviour
             } else {
 
                 playerInput.SetActive(false);
+                if(!_timesUp) 
+                {
+                    _timesUp = true;
+                    timesUpAnimation.Appear();
+                }
                 Invoke("LoadGameOver", delayTime);
                 //gameOverMenu.GameOverMenuObj.SetActive(true);
             }
