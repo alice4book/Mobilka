@@ -2437,7 +2437,7 @@ MonoBehaviour:
   pricetext: {fileID: 1717308953}
   price: 0
   unlocked: 1
-  color: {r: 0.34117648, g: 0.3019608, b: 0.40784314, a: 1}
+  color: {r: 0.4745098, g: 0.16470589, b: 1, a: 1}
   padlock: {fileID: 755758342}
 --- !u!61 &1763265821
 BoxCollider2D:
@@ -3285,15 +3285,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6062635045396986148, guid: a805c185a89193d439aba8bfe43f1566, type: 3}
       propertyPath: color.b
-      value: 0.42745098
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6062635045396986148, guid: a805c185a89193d439aba8bfe43f1566, type: 3}
       propertyPath: color.g
-      value: 0.9098039
+      value: 0.9254902
       objectReference: {fileID: 0}
     - target: {fileID: 6062635045396986148, guid: a805c185a89193d439aba8bfe43f1566, type: 3}
       propertyPath: color.r
-      value: 0.9490196
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6062635045396986148, guid: a805c185a89193d439aba8bfe43f1566, type: 3}
       propertyPath: unlocked
