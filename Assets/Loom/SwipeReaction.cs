@@ -147,23 +147,57 @@ public class SwipeReaction : MonoBehaviour
             // Double swipe
             if (value == 5)
             {
-                shuttleLeft.CorrectHalfMove();
-                shuttleRight.CorrectHalfMove();
-                // Both swipes are correct
-                ProcessCorrectSwipe();
-            } else
-            if (value == 1)
+                //color1 & color2
+                if(currentLeftColorVec == leftColorVec && currentRightColorVec == rightColorVec && activeLeftShuttle == shuttleLeft && activeRightShuttle == shuttleRight)
+                {
+                    shuttleLeft.CorrectHalfMove();
+                    shuttleRight.CorrectHalfMove();
+                    // Both swipes are correct
+                    ProcessCorrectSwipe();
+                }
+                //color1 & color4
+                else if(currentLeftColorVec == leftColorVec && currentRightColorVec == rightColorVec2 && activeLeftShuttle == shuttleLeft && activeRightShuttle == shuttleRight2)
+                {
+                    shuttleLeft.CorrectHalfMove();
+                    shuttleRight2.CorrectHalfMove();
+                    // Both swipes are correct
+                    ProcessCorrectSwipe();
+                }
+                //color2 & color3
+                else if(currentLeftColorVec == leftColorVec2 && currentRightColorVec == rightColorVec && activeLeftShuttle == shuttleLeft2 && activeRightShuttle == shuttleRight)
+                {
+                    shuttleLeft2.CorrectHalfMove();
+                    shuttleRight.CorrectHalfMove();
+                    // Both swipes are correct
+                    ProcessCorrectSwipe();
+                }
+                //color2 & color3
+                else if(currentLeftColorVec == leftColorVec2 && currentRightColorVec == rightColorVec2 && activeLeftShuttle == shuttleLeft2 && activeRightShuttle == shuttleRight2)
+                {
+                    shuttleLeft2.CorrectHalfMove();
+                    shuttleRight2.CorrectHalfMove();
+                    // Both swipes are correct
+                    ProcessCorrectSwipe();
+                }
+                else
+                {
+                    activeLeftShuttle.WrongMove();
+                    activeRightShuttle.WrongMove();
+                    ProcessIncorrectSwipe();
+                }
+
+            } 
+            else if (value == 1)
             {
                 shuttleLeft.WrongMove();
                 ProcessIncorrectSwipe();
             }
-            else
-            if (value == 2)
+            else if (value == 2)
             {
                 shuttleRight.WrongMove();
                 ProcessIncorrectSwipe();
             }
-            else
+            else if (value != 3 && value != 4 && value != 6 && value != 7)
             {
                 if (swipeCoroutine != null)
                 {
