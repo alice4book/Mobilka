@@ -6,6 +6,10 @@ public static class GlobalVar
 {
     public static Color color1 = new Color(121.0f / 255, 42.0f / 255, 255.0f / 255);
     public static Color color2 = new Color(255.0f / 255, 236.0f / 255, 0.0f / 255);
+
+    public static Color color3 = new Color(1.0f, 0.5f, 0.0f);
+    public static Color color4 = new Color(0.0f, 0.95f, 1.0f);
+
     public static int coins = 3000;
 
     //score based on lines made and comboMultiplier

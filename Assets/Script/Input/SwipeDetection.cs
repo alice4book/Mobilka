@@ -161,19 +161,19 @@ public class SwipeDetection : MonoBehaviour
     private void CountSwipeDir()
     {
         // Only left & right
-        //if (Mathf.Abs(_swipeVector.x) > Mathf.Abs(_swipeVector.y)){
+        if (Mathf.Abs(_swipeVector.x) > Mathf.Abs(_swipeVector.y)){
         // Ruch w lewo lub w prawo
-        if (_swipeVector.x > 0)
-        {
-            // Right
-            OnSwipeDelegate?.Invoke(1);
-        }
-        else
-        {
-            // Left
-            OnSwipeDelegate?.Invoke(2);
-        }
-        /*
+            if (_swipeVector.x > 0)
+            {
+                // Right
+                OnSwipeDelegate?.Invoke(1);
+            }
+            else
+            {
+                // Left
+                OnSwipeDelegate?.Invoke(2);
+            }
+        
         }
         else
         {
@@ -181,14 +181,14 @@ public class SwipeDetection : MonoBehaviour
             if (_swipeVector.y > 0)
             {
                 // Up
-                OnSwipe?.Invoke(3);
+                OnSwipeDelegate?.Invoke(3);
             }
             else
             {
                 // Down
-                OnSwipe?.Invoke(4);
+                OnSwipeDelegate?.Invoke(4);
             }
         }
-        */
+        
     }
 }
