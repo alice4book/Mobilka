@@ -48,13 +48,28 @@ public class SwipeDetection : MonoBehaviour
         if(_bDouble && Touch.activeTouches.Count < 2)
         {
             //testText2.text = "double LESS";
-            DoubleSwipeDir();
-            _primary = new Touch();
-            _secondary = new Touch();
-            _bSecond = true;
-            _bDouble = false;
+            _swipeVector = _primary.screenPosition - _primary.startScreenPosition;
+            _swipeVector2nd = _secondary.screenPosition - _secondary.startScreenPosition;
+            if(Mathf.Abs(_swipeVector.y) < Mathf.Abs(_swipeVector.x) && Mathf.Abs(_swipeVector2nd.y) < Mathf.Abs(_swipeVector2nd.x))
+            {
+                DoubleSwipeDir();
+                _primary = new Touch();
+                _secondary = new Touch();
+                _bSecond = true;
+                _bDouble = false;
+            } 
+            else 
+            {
+                OnSwipeDelegate?.Invoke(3);
+                OnSwipeDelegate?.Invoke(6);
+                _primary = new Touch();
+                _secondary = new Touch();
+                _bSecond = true;
+                _bDouble = false;
+            }
             
         } 
+
         /*
         else {
             if(_bDouble) {
