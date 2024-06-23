@@ -15,6 +15,9 @@ public class ShoopItems : MonoBehaviour
     private Vector3 position;
     [SerializeField] private int index;
 
+    [SerializeField] private Animator padlockAnim;
+    [SerializeField] private Animator priceAnim;
+
     public void Start()
     {
         GetComponent<SpriteRenderer>().color = color;
@@ -44,10 +47,13 @@ public class ShoopItems : MonoBehaviour
                 padlock.SetActive(false);
                 pricetext.enabled = false;
                 GlobalVar.coins = GlobalVar.coins - price;
+                offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                dragging = true;
             }
             else
             {
-                //shake text
+                padlockAnim.SetTrigger("CantBuy");
+                priceAnim.SetTrigger("CantBuy");
             }
         }
     }
