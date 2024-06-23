@@ -32,6 +32,17 @@ public static class GlobalVar
     //was the game started from menu (true) or gameover (false)
     public static bool fromMenu = true;
 
+    //list of unlocked
+    public static List<bool> listUnlocked;
+
+    static GlobalVar()
+    {
+        listUnlocked = new List<bool>{
+        true, true, false, false, false, false, false, false, false
+        };
+        
+    }
+
     public static void AddToScore()
     {
         gameScore = gameScore + (1 * comboMultiplier);

@@ -13,11 +13,13 @@ public class ShoopItems : MonoBehaviour
     private bool dragging = false;
     private Vector3 offset;
     private Vector3 position;
+    [SerializeField] private int index;
 
     public void Start()
     {
         GetComponent<SpriteRenderer>().color = color;
         pricetext.text = price.ToString();
+        unlocked = GlobalVar.listUnlocked[index];
         if (unlocked)
         {
             padlock.SetActive(false);
@@ -38,6 +40,7 @@ public class ShoopItems : MonoBehaviour
             if(GlobalVar.coins >= price)
             {
                 unlocked = true;
+                GlobalVar.listUnlocked[index] = unlocked;
                 padlock.SetActive(false);
                 pricetext.enabled = false;
                 GlobalVar.coins = GlobalVar.coins - price;
