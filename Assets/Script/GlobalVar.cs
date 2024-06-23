@@ -40,7 +40,6 @@ public static class GlobalVar
         listUnlocked = new List<bool>{
         true, true, false, false, false, false, false, false, false
         };
-        
     }
 
     public static void AddToScore()
