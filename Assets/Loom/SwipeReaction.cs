@@ -69,12 +69,15 @@ public class SwipeReaction : MonoBehaviour
         {
             Debug.Log("changed left");
             if(activeLeftShuttle == shuttleLeft) {
-                Debug.Log("here");
                 activeLeftShuttle = shuttleLeft2;
+                activeLeftShuttle.gameObject.transform.position = shuttleSpots[0].transform.position;
+                shuttleLeft.gameObject.transform.position = shuttleSpots[2].transform.position;
             } else {
-                Debug.Log("hihi");
                 activeLeftShuttle = shuttleLeft;
+                activeLeftShuttle.gameObject.transform.position = shuttleSpots[0].transform.position;
+                shuttleLeft2.gameObject.transform.position = shuttleSpots[2].transform.position;
             }
+
             Debug.Log(activeLeftShuttle);
         } 
         else if(value == 6 || value == 7)
@@ -82,29 +85,25 @@ public class SwipeReaction : MonoBehaviour
             Debug.Log("changed right");
             if(activeRightShuttle == shuttleRight) {
                 activeRightShuttle = shuttleRight2;
+                activeRightShuttle.gameObject.transform.position = shuttleSpots[1].transform.position;
+                shuttleRight.gameObject.transform.position = shuttleSpots[3].transform.position;
             } else {
                 activeRightShuttle = shuttleRight;
+                activeRightShuttle.gameObject.transform.position = shuttleSpots[1].transform.position;
+                shuttleRight2.gameObject.transform.position = shuttleSpots[3].transform.position;
             }
-           // Debug.Log(activeRightShuttle);
+
         }
 
         if (currentLeftColorVec == currentRightColorVec)
         {
-            Debug.Log(currentLeftColorVec);
-            Debug.Log(leftColorVec2);
-            Debug.Log(rightColorVec2);
 
-            Debug.Log(value);
-
-            Debug.Log(activeLeftShuttle);
-            Debug.Log(shuttleLeft2);
-            Debug.Log(shuttleRight2);
 
             // Single swipe needed
             if ((value == 1 && currentLeftColorVec == leftColorVec && activeLeftShuttle == shuttleLeft) || (value == 2 && currentLeftColorVec == rightColorVec && activeRightShuttle == shuttleRight))
             {
                 // Correct single swipe, value = direction
-                Debug.Log("heheheheheheheheh");
+
                 if(value == 1 && currentLeftColorVec == leftColorVec) {
                     shuttleLeft.CorrectMove();
                 }
@@ -115,7 +114,7 @@ public class SwipeReaction : MonoBehaviour
                 ProcessCorrectSwipe();
             }
             else if((value == 1 && currentLeftColorVec == leftColorVec2 && activeLeftShuttle == shuttleLeft2) || (value == 2 && currentLeftColorVec == rightColorVec2 && activeRightShuttle == shuttleRight2)) {
-                Debug.Log("huhuhuhuhu");
+
                 if(value == 1 && currentLeftColorVec == leftColorVec2) {
                     //Debug.Log("HERE");
                     shuttleLeft2.CorrectMove();
