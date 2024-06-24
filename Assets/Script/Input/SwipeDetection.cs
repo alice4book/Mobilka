@@ -52,7 +52,31 @@ public class SwipeDetection : MonoBehaviour
             _swipeVector2nd = _secondary.screenPosition - _secondary.startScreenPosition;
             if(Mathf.Abs(_swipeVector.y) < Mathf.Abs(_swipeVector.x) && Mathf.Abs(_swipeVector2nd.y) < Mathf.Abs(_swipeVector2nd.x))
             {
-                DoubleSwipeDir();
+                //bottom bottom
+                if((_primary.startScreenPosition.y < Screen.height / 2 && _secondary.startScreenPosition.y < Screen.height / 2)
+                || (_secondary.startScreenPosition.y < Screen.height / 2 && _primary.startScreenPosition.y < Screen.height / 2))
+                {
+                    OnSwipeDelegate?.Invoke(5);
+                }
+                //top top
+                else if((_primary.startScreenPosition.y > Screen.height / 2 && _secondary.startScreenPosition.y > Screen.height / 2) 
+                || (_secondary.startScreenPosition.y > Screen.height / 2 && _primary.startScreenPosition.y > Screen.height / 2))
+                {
+                    OnSwipeDelegate?.Invoke(6);
+                }
+                //bottom top
+                else if((_primary.startScreenPosition.y < Screen.height / 2 && _secondary.startScreenPosition.y > Screen.height / 2 && _swipeVector.x > 0 && _swipeVector2nd.x < 0)  
+                || (_secondary.startScreenPosition.y < Screen.height / 2 && _primary.startScreenPosition.y > Screen.height / 2  && _swipeVector.x < 0 && _swipeVector2nd.x > 0))
+                {
+                    OnSwipeDelegate?.Invoke(7);
+                }
+                //top bottom
+                else if((_primary.startScreenPosition.y > Screen.height / 2 && _secondary.startScreenPosition.y < Screen.height / 2  && _swipeVector.x > 0 && _swipeVector2nd.x < 0)  
+                || (_secondary.startScreenPosition.y > Screen.height / 2 && _primary.startScreenPosition.y < Screen.height / 2 && _swipeVector.x < 0 && _swipeVector2nd.x > 0))
+                {
+                    OnSwipeDelegate?.Invoke(8);
+                }
+                //DoubleSwipeDir();
                 _primary = new Touch();
                 _secondary = new Touch();
                 _bSecond = true;
@@ -60,8 +84,10 @@ public class SwipeDetection : MonoBehaviour
             } 
             else 
             {
+                /*
                 OnSwipeDelegate?.Invoke(3);
                 OnSwipeDelegate?.Invoke(6);
+                */
                 _primary = new Touch();
                 _secondary = new Touch();
                 _bSecond = true;
@@ -181,15 +207,35 @@ public class SwipeDetection : MonoBehaviour
             if (_swipeVector.x > 0)
             {
                 // Right
-                OnSwipeDelegate?.Invoke(1);
+                //bottom
+                if(touchStart.y < Screen.height / 2)
+                {
+                    OnSwipeDelegate?.Invoke(1);
+                }
+                //top
+                else
+                {
+                    OnSwipeDelegate?.Invoke(3);
+                }
+                
             }
             else
             {
-                // Left
-                OnSwipeDelegate?.Invoke(2);
+                //Left
+                //bottom
+                if(touchStart.y < Screen.height / 2)
+                {
+                    OnSwipeDelegate?.Invoke(2);
+                }
+                //top
+                else
+                {
+                    OnSwipeDelegate?.Invoke(4);
+                }
             }
         
         }
+        /*
         else
         {
             // Up or down swipe
@@ -223,6 +269,7 @@ public class SwipeDetection : MonoBehaviour
                 }
             }
         }
+        */
         
     }
 }

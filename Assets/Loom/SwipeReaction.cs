@@ -64,7 +64,7 @@ public class SwipeReaction : MonoBehaviour
         Vector3 currentLeftColorVec = new Vector3(lineLeftColor.r, lineLeftColor.g, lineLeftColor.b);
         Vector3 currentRightColorVec = new Vector3(lineRightColor.r, lineRightColor.g, lineRightColor.b);
 
-
+        /*
         if(value == 3 || value == 4)
         {
             Debug.Log("changed left");
@@ -94,13 +94,14 @@ public class SwipeReaction : MonoBehaviour
             }
 
         }
+        */
 
         if (currentLeftColorVec == currentRightColorVec)
         {
 
 
             // Single swipe needed
-            if ((value == 1 && currentLeftColorVec == leftColorVec && activeLeftShuttle == shuttleLeft) || (value == 2 && currentLeftColorVec == rightColorVec && activeRightShuttle == shuttleRight))
+            if ((value == 1 && currentLeftColorVec == leftColorVec) || (value == 2 && currentLeftColorVec == rightColorVec))
             {
                 // Correct single swipe, value = direction
 
@@ -113,19 +114,19 @@ public class SwipeReaction : MonoBehaviour
 
                 ProcessCorrectSwipe();
             }
-            else if((value == 1 && currentLeftColorVec == leftColorVec2 && activeLeftShuttle == shuttleLeft2) || (value == 2 && currentLeftColorVec == rightColorVec2 && activeRightShuttle == shuttleRight2)) {
+            else if((value == 3 && currentLeftColorVec == leftColorVec2) || (value == 4 && currentLeftColorVec == rightColorVec2)) {
 
-                if(value == 1 && currentLeftColorVec == leftColorVec2) {
+                if(value == 3 && currentLeftColorVec == leftColorVec2) {
                     //Debug.Log("HERE");
                     shuttleLeft2.CorrectMove();
                 }
-                if(value == 2 && currentLeftColorVec == rightColorVec2) {
+                if(value == 4 && currentLeftColorVec == rightColorVec2) {
                     shuttleRight2.CorrectMove();
                 }
                 
                 ProcessCorrectSwipe();
             }
-            else if (value != 3 && value != 4 && value != 6 && value != 7)
+            else
             {
                 // Incorrect swipe
                 if(value == 1 && currentLeftColorVec != leftColorVec) {
@@ -133,6 +134,12 @@ public class SwipeReaction : MonoBehaviour
                 }
                 if(value == 2 && currentLeftColorVec != rightColorVec) {
                     shuttleRight.WrongMove();
+                }
+                if(value == 3 && currentLeftColorVec != leftColorVec2) {
+                    shuttleLeft2.WrongMove();
+                }
+                if(value == 4 && currentLeftColorVec != rightColorVec2) {
+                    shuttleRight2.WrongMove();
                 }
                 if(value == 5)
                 {
@@ -147,32 +154,26 @@ public class SwipeReaction : MonoBehaviour
             // Double swipe
             if (value == 5)
             {
-                //color1 & color2
-                if(currentLeftColorVec == leftColorVec && currentRightColorVec == rightColorVec && activeLeftShuttle == shuttleLeft && activeRightShuttle == shuttleRight)
+                //bottom bottom
+                if(currentLeftColorVec == leftColorVec && currentRightColorVec == rightColorVec)
                 {
                     shuttleLeft.CorrectHalfMove();
                     shuttleRight.CorrectHalfMove();
                     // Both swipes are correct
                     ProcessCorrectSwipe();
                 }
-                //color1 & color4
-                else if(currentLeftColorVec == leftColorVec && currentRightColorVec == rightColorVec2 && activeLeftShuttle == shuttleLeft && activeRightShuttle == shuttleRight2)
+                else
                 {
-                    shuttleLeft.CorrectHalfMove();
-                    shuttleRight2.CorrectHalfMove();
-                    // Both swipes are correct
-                    ProcessCorrectSwipe();
+                    shuttleLeft.WrongMove();
+                    shuttleRight.WrongMove();
+                    ProcessIncorrectSwipe();
                 }
-                //color2 & color3
-                else if(currentLeftColorVec == leftColorVec2 && currentRightColorVec == rightColorVec && activeLeftShuttle == shuttleLeft2 && activeRightShuttle == shuttleRight)
-                {
-                    shuttleLeft2.CorrectHalfMove();
-                    shuttleRight.CorrectHalfMove();
-                    // Both swipes are correct
-                    ProcessCorrectSwipe();
-                }
-                //color2 & color3
-                else if(currentLeftColorVec == leftColorVec2 && currentRightColorVec == rightColorVec2 && activeLeftShuttle == shuttleLeft2 && activeRightShuttle == shuttleRight2)
+
+            } 
+            else if(value == 6)
+            {
+                //top top
+                if(currentLeftColorVec == leftColorVec2 && currentRightColorVec == rightColorVec2)
                 {
                     shuttleLeft2.CorrectHalfMove();
                     shuttleRight2.CorrectHalfMove();
@@ -181,12 +182,45 @@ public class SwipeReaction : MonoBehaviour
                 }
                 else
                 {
-                    activeLeftShuttle.WrongMove();
-                    activeRightShuttle.WrongMove();
+                    shuttleLeft2.WrongMove();
+                    shuttleRight2.WrongMove();
                     ProcessIncorrectSwipe();
                 }
-
-            } 
+            }
+            else if(value == 7)
+            {
+                //bottom top
+                if(currentLeftColorVec == leftColorVec && currentRightColorVec == rightColorVec2)
+                {
+                    shuttleLeft.CorrectHalfMove();
+                    shuttleRight2.CorrectHalfMove();
+                    // Both swipes are correct
+                    ProcessCorrectSwipe();
+                }
+                else
+                {
+                    shuttleLeft.WrongMove();
+                    shuttleRight2.WrongMove();
+                    ProcessIncorrectSwipe();
+                }
+            }
+            else if(value == 8)
+            {
+                //top bottom
+                if(currentLeftColorVec == leftColorVec2 && currentRightColorVec == rightColorVec)
+                {
+                    shuttleLeft2.CorrectHalfMove();
+                    shuttleRight.CorrectHalfMove();
+                    // Both swipes are correct
+                    ProcessCorrectSwipe();
+                }
+                else
+                {
+                    shuttleLeft2.WrongMove();
+                    shuttleRight.WrongMove();
+                    ProcessIncorrectSwipe();
+                }
+            }
             else if (value == 1)
             {
                 shuttleLeft.WrongMove();
@@ -197,7 +231,17 @@ public class SwipeReaction : MonoBehaviour
                 shuttleRight.WrongMove();
                 ProcessIncorrectSwipe();
             }
-            else if (value != 3 && value != 4 && value != 6 && value != 7)
+            else if (value == 3)
+            {
+                shuttleLeft2.WrongMove();
+                ProcessIncorrectSwipe();
+            }
+            else if (value == 4)
+            {
+                shuttleRight2.WrongMove();
+                ProcessIncorrectSwipe();
+            }
+            else
             {
                 if (swipeCoroutine != null)
                 {
