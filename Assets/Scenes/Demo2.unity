@@ -1511,7 +1511,7 @@ MonoBehaviour:
   timerFill: {fileID: 305593004}
   timeText: {fileID: 1419388039}
   timeRemaining: 0
-  startingTime: 15
+  startingTime: 25
   timeSpeed: 1
   minTimeSpeed: 1
   maxTimeSpeed: 8
