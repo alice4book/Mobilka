@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShowCoinAdded : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
+    [SerializeField] private AudioSource _audio;
 
     private void Start()
     {
@@ -14,6 +15,7 @@ public class ShowCoinAdded : MonoBehaviour
 
     private void StartCoinAnimation()
     {
+        _audio.Play();
         _animator.SetTrigger("Plus one");
     }
 }
