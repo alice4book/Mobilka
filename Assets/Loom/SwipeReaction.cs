@@ -70,11 +70,17 @@ public class SwipeReaction : MonoBehaviour
 
     void Update()
     {
-        if(firstUpdate)
+        if(firstUpdate && GlobalVar.fromMenu)
         {
             firstUpdate = false;
             shuttleLeft.IdleStatic();
             shuttleRight.IdleStatic();
+        }
+        else if (firstUpdate && !GlobalVar.fromMenu)
+        {
+            firstUpdate = false;
+            shuttleLeft2.IdleStatic();
+            shuttleRight2.IdleStatic();
         }
     }
 
@@ -163,11 +169,17 @@ public class SwipeReaction : MonoBehaviour
             else if (value != 3 && value != 4 && value != 6 && value != 7)
             {
                 // Incorrect swipe
-                if(value == 1 && currentLeftColorVec != leftColorVec) {
+                if(value == 1 && currentLeftColorVec != leftColorVec && activeLeftShuttle == shuttleLeft) {
                     shuttleLeft.WrongMove();
                 }
-                if(value == 2 && currentLeftColorVec != rightColorVec) {
+                if(value == 1 && currentLeftColorVec != leftColorVec2 && activeLeftShuttle == shuttleLeft2) {
+                    shuttleLeft2.WrongMove();
+                }
+                if(value == 2 && currentLeftColorVec != rightColorVec && activeRightShuttle == shuttleRight) {
                     shuttleRight.WrongMove();
+                }
+                if(value == 2 && currentLeftColorVec != rightColorVec2 && activeRightShuttle == shuttleRight2) {
+                    shuttleRight2.WrongMove();
                 }
                 if(value == 5)
                 {
