@@ -99,6 +99,7 @@ public class Loom : MonoBehaviour
 
     void GenerateColorPairList() {
 
+        int rangeNumber = 12;
         int firstNumber = 0;
         Color tmpColor = new Color(1.0f,0.0f,0.0f,0.5f);
 
@@ -114,87 +115,95 @@ public class Loom : MonoBehaviour
             colorPairs.Add(tmpColorPair);
         }
 
+        int random = 0;
         for(int i = firstNumber; i < 1000; i++) {
-            int random = Random.Range(0,12);
+            if(i < 50)
+            {
+                rangeNumber = 5;
+            } 
+            else if(i < 75)
+            {
+                rangeNumber = 10;
+            }
+            else
+            {
+                rangeNumber = 12;
+            }
+            random = Random.Range(0,rangeNumber);
             switch(random) 
             {
-                //ColorPair = (left, left);
+                //ColorPair = (left, left); color1
                 case 0:
                     //tmpColor = redColor;
                     tmpColorPair = new ColorPair(colorLeft, colorLeft);
                     break;
 
-                //ColorPair = (left, left);
+                //ColorPair = (left, left); color1
                 case 1:
                     //tmpColor = blueColor;
                     tmpColorPair = new ColorPair(colorLeft, colorLeft);
                     break;
 
-                //ColorPair = (right, right);
+                //ColorPair = (right, right); color2
                 case 2:
                     //tmpColor = redColor;
                     tmpColorPair = new ColorPair(colorRight, colorRight);
                     break;
 
-                //ColorPair = (right, right);
+                //ColorPair = (right, right); color2
                 case 3:
                     //tmpColor = blueColor;
                     tmpColorPair = new ColorPair(colorRight, colorRight);
                     break;
   
-                //ColorPair = (left, left);
+                //ColorPair = (left, right); color1 color2
                 case 4:
-                    //tmpColor = redColor;
-                    tmpColorPair = new ColorPair(colorLeft2, colorLeft2);
-                    break;
-
-                //ColorPair = (left, left);
-                case 5:
-                    //tmpColor = blueColor;
-                    tmpColorPair = new ColorPair(colorLeft2, colorLeft2);
-                    break;
-
-                //ColorPair = (right, right);
-                case 6:
-                    //tmpColor = redColor;
-                    tmpColorPair = new ColorPair(colorRight2, colorRight2);
-                    break;
-
-                //ColorPair = (right, right);
-                case 7:
-                    //tmpColor = blueColor;
-                    tmpColorPair = new ColorPair(colorRight2, colorRight2);
-                    break;
-                //ColorPair = (left, right);
-                case 8:
-                    //tmpColor = blueColor;
-                    tmpColorPair = new ColorPair(colorLeft2, colorRight2);
-                    break;
-                
-                //ColorPair = (left, right);
-                case 9:
                     //tmpColor = blueColor;
                     tmpColorPair = new ColorPair(colorLeft, colorRight);
                     break;
 
-                //ColorPair = (left, right);
+                //ColorPair = (left, left);  color3 color3
+                case 5:
+                    //tmpColor = redColor;
+                    tmpColorPair = new ColorPair(colorLeft2, colorLeft2);
+                    break;
+
+                //ColorPair = (left, left); color3 color3
+                case 6:
+                    //tmpColor = blueColor;
+                    tmpColorPair = new ColorPair(colorLeft2, colorLeft2);
+                    break;
+
+                //ColorPair = (right, right); color4 color4
+                case 7:
+                    //tmpColor = redColor;
+                    tmpColorPair = new ColorPair(colorRight2, colorRight2);
+                    break;
+
+                //ColorPair = (right, right); color4 color4
+                case 8:
+                    //tmpColor = blueColor;
+                    tmpColorPair = new ColorPair(colorRight2, colorRight2);
+                    break;
+
+                //ColorPair = (left, right); color3 color4
+                case 9:
+                    //tmpColor = blueColor;
+                    tmpColorPair = new ColorPair(colorLeft2, colorRight2);
+                    break;
+
+                //ColorPair = (left, right); color1 color4
                 case 10:
                     //tmpColor = blueColor;
                     tmpColorPair = new ColorPair(colorLeft, colorRight2);
                     break;
                 
-                //ColorPair = (left, right);
+                //ColorPair = (left, right); color3 color2
                 case 11:
                     //tmpColor = blueColor;
                     tmpColorPair = new ColorPair(colorLeft2, colorRight);
                     break;
-                
-                //ColorPair = (left, right);
-                case 12:
-                    //tmpColor = blueColor;
-                    tmpColorPair = new ColorPair(colorLeft2, colorRight2);
-                    break;
-
+            
                 //ColorPair = (left, left);
                 default:
                     //tmpColor = redColor;
