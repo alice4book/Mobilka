@@ -8,9 +8,13 @@ public class TutorialManager : MonoBehaviour
 {
     [SerializeField] private TutorialAnimations tutorialLeft;
     [SerializeField] private TutorialAnimations tutorialRight;
+    [SerializeField] private TutorialUpAnimations tutorialUpOnRight;
+    [SerializeField] private TutorialUpAnimations tutorialUpOnLeft;
 
     GameObject tutorialArrowLeft;
     GameObject tutorialArrowRight;
+    GameObject tutorialArrowUpRight;
+    GameObject tutorialArrowUpLeft;
 
     Color tmpColor;
 
@@ -19,9 +23,13 @@ public class TutorialManager : MonoBehaviour
     {
         tutorialArrowLeft = tutorialLeft.gameObject;
         tutorialArrowRight = tutorialRight.gameObject;
+        tutorialArrowUpRight = tutorialUpOnRight.gameObject;
+        tutorialArrowUpLeft = tutorialUpOnLeft.gameObject;
 
         tutorialArrowLeft.SetActive(false);
         tutorialArrowRight.SetActive(false);
+        tutorialArrowUpLeft.SetActive(false);
+        tutorialArrowUpRight.SetActive(false);
     }
 
     // Update is called once per frame
@@ -44,24 +52,37 @@ public class TutorialManager : MonoBehaviour
         } 
         else if (GlobalVar.linesMade  == 2 && GlobalVar.fromMenu == true)
         {
+            tutorialArrowRight.GetComponent<Animator>().enabled = false;
+            tutorialArrowRight.SetActive(false);
+
+            tutorialArrowUpLeft.SetActive(true);
+            tutorialUpOnLeft.SwipeUp();
+
+        }
+        else if (GlobalVar.linesMade  == 3 && GlobalVar.fromMenu == true)
+        {
+            tutorialArrowUpLeft.GetComponent<Animator>().enabled = false;
+            tutorialArrowUpLeft.SetActive(false);
+
+            tutorialArrowUpRight.SetActive(true);
+            tutorialUpOnRight.SwipeUp();
+
+        } 
+        else if (GlobalVar.linesMade  == 4 && GlobalVar.fromMenu == true)
+        {
+            tutorialArrowUpRight.GetComponent<Animator>().enabled = false;
+            tutorialArrowUpRight.SetActive(false);
+
             tutorialArrowLeft.GetComponent<Animator>().enabled = true;
             tutorialArrowLeft.SetActive(true);
-
-            //tmpColor = tutorialArrowLeft.color;
-            //tmpColor.a = 1;
-            //tutorialArrowLeft.color = tmpColor;
-
-            //tmpColor = tutorialArrowRight.color;
-            //tmpColor.a = 1;
-            //tutorialArrowRight.color = tmpColor;
-
-            //tutorialLeft.gameObject.SetActive(true);
-            //tutorialRight.gameObject.SetActive(true);
+            tutorialArrowRight.GetComponent<Animator>().enabled = true;
+            tutorialArrowRight.SetActive(true);
 
             tutorialLeft.SwipeHalf();
             tutorialRight.SwipeHalf();
 
-        } else if (GlobalVar.linesMade > 2 && GlobalVar.fromMenu == true)
+        } 
+        else if (GlobalVar.linesMade > 4 && GlobalVar.fromMenu == true)
         {
             //tutorialLeft.Idle();
             //tutorialRight.Idle();

@@ -41,13 +41,13 @@ public class SwipeReaction : MonoBehaviour
         colorLeft2 = GlobalVar.color3;
         colorRight2 = GlobalVar.color4;
 
-        shuttleLeft.gameObject.transform.position = shuttleSpots[0].transform.position;
-        shuttleRight.gameObject.transform.position = shuttleSpots[1].transform.position;
-        shuttleLeft2.gameObject.transform.position = shuttleSpots[2].transform.position;
-        shuttleRight2.gameObject.transform.position = shuttleSpots[3].transform.position;
+        shuttleLeft.gameObject.transform.position = shuttleSpots[2].transform.position;
+        shuttleRight.gameObject.transform.position = shuttleSpots[3].transform.position;
+        shuttleLeft2.gameObject.transform.position = shuttleSpots[0].transform.position;
+        shuttleRight2.gameObject.transform.position = shuttleSpots[1].transform.position;
 
-        activeLeftShuttle = shuttleLeft;
-        activeRightShuttle = shuttleRight;
+        activeLeftShuttle = shuttleLeft2;
+        activeRightShuttle = shuttleRight2;
         //shuttleLeft2.IdleStatic();
         //shuttleRight2.IdleStatic();
 
@@ -60,8 +60,8 @@ public class SwipeReaction : MonoBehaviour
         if(firstUpdate)
         {
             firstUpdate = false;
-            shuttleLeft2.IdleStatic();
-            shuttleRight2.IdleStatic();
+            shuttleLeft.IdleStatic();
+            shuttleRight.IdleStatic();
         }
     }
 
@@ -254,7 +254,7 @@ public class SwipeReaction : MonoBehaviour
         GlobalVar.AddToScore();
         GlobalVar.ManageCoins();
 
-        if((GlobalVar.linesMade  == 3 && GlobalVar.fromMenu == true) || (GlobalVar.linesMade  == 1 && GlobalVar.fromMenu == false)) {
+        if((GlobalVar.linesMade  == 5 && GlobalVar.fromMenu == true) || (GlobalVar.linesMade  == 1 && GlobalVar.fromMenu == false)) {
             timerController.isTimeRunning = true;
         }
 
