@@ -2076,7 +2076,7 @@ PrefabInstance:
       objectReference: {fileID: 1903233908}
     - target: {fileID: 2425176035848434983, guid: d0f068c5bd78c3548b97a8abe961efd3, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4284144383
+      value: 2019220223
       objectReference: {fileID: 0}
     - target: {fileID: 4297960649491470095, guid: d0f068c5bd78c3548b97a8abe961efd3, type: 3}
       propertyPath: m_Name
@@ -2124,7 +2124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6558727593763183785, guid: d0f068c5bd78c3548b97a8abe961efd3, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4284144383
+      value: 2019220223
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6531,7 +6531,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -6539,23 +6539,23 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.002
       value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: 1.0201569
+      inSlope: 0.09068621
+      outSlope: 0.09068621
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0.29400116
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

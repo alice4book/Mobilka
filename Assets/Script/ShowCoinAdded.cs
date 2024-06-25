@@ -10,6 +10,7 @@ public class ShowCoinAdded : MonoBehaviour
     private void Start()
     {
         _animator = GetComponent<Animator>();
+        _animator.enabled = true;
         GlobalVar.OnAddMoney += StartCoinAnimation;
     }
 
