@@ -827,7 +827,19 @@ MonoBehaviour:
     m_ActionId: 3885e6de-cab0-45f9-9774-65cb49e29a3e
     m_ActionName: Gameplay/Swipe[/Device Simulator Touchscreen/press]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1149517080}
+        m_TargetAssemblyTypeName: SwipeDetection, Assembly-CSharp
+        m_MethodName: DebugDoubleSwipeDir
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: b67d17af-ca5b-40df-9716-4b7d6ef94990
     m_ActionName: Gameplay/DebugDoubleSwipe[/Mouse/scroll]
   m_NeverAutoSwitchControlSchemes: 0
