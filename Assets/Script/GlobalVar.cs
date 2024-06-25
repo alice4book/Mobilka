@@ -39,6 +39,11 @@ public static class GlobalVar
     //list of unlocked
     public static List<bool> listUnlocked;
 
+    // Delegate for animation of Coin added
+    public delegate void AddMoney();
+
+    public static event AddMoney OnAddMoney;
+
     static GlobalVar()
     {
         listUnlocked = new List<bool>{
@@ -88,6 +93,7 @@ public static class GlobalVar
             //Debug.Log("Made 20 lines");
             //Debug.Log(linesMade);
             coins += 10;
+            OnAddMoney?.Invoke();
             //Debug.Log(coins);
         }
     }
