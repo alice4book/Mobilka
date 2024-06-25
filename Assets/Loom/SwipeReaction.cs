@@ -32,6 +32,8 @@ public class SwipeReaction : MonoBehaviour
 
     [SerializeField] public List<GameObject> shuttleSpots;
 
+    bool firstUpdate = true;
+
     void Start()
     {
         colorLeft = GlobalVar.color1;
@@ -46,9 +48,21 @@ public class SwipeReaction : MonoBehaviour
 
         activeLeftShuttle = shuttleLeft;
         activeRightShuttle = shuttleRight;
+        //shuttleLeft2.IdleStatic();
+        //shuttleRight2.IdleStatic();
 
         //score = 0;
         SwipeDetection.OnSwipeDelegate += HandleSwipeDirection;
+    }
+
+    void Update()
+    {
+        if(firstUpdate)
+        {
+            firstUpdate = false;
+            shuttleLeft2.IdleStatic();
+            shuttleRight2.IdleStatic();
+        }
     }
 
     private void HandleSwipeDirection(int value)
@@ -72,12 +86,16 @@ public class SwipeReaction : MonoBehaviour
                 activeLeftShuttle = shuttleLeft2;
                 activeLeftShuttle.gameObject.transform.position = shuttleSpots[0].transform.position;
                 shuttleLeft.gameObject.transform.position = shuttleSpots[2].transform.position;
+                activeLeftShuttle.Idle();
+                shuttleLeft.IdleStatic();
             } else {
                 activeLeftShuttle = shuttleLeft;
                 activeLeftShuttle.gameObject.transform.position = shuttleSpots[0].transform.position;
                 shuttleLeft2.gameObject.transform.position = shuttleSpots[2].transform.position;
+                activeLeftShuttle.Idle();
+                shuttleLeft2.IdleStatic();
             }
-
+            
             Debug.Log(activeLeftShuttle);
         } 
         else if(value == 6 || value == 7)
@@ -87,10 +105,14 @@ public class SwipeReaction : MonoBehaviour
                 activeRightShuttle = shuttleRight2;
                 activeRightShuttle.gameObject.transform.position = shuttleSpots[1].transform.position;
                 shuttleRight.gameObject.transform.position = shuttleSpots[3].transform.position;
+                activeRightShuttle.Idle();
+                shuttleRight.IdleStatic();
             } else {
                 activeRightShuttle = shuttleRight;
                 activeRightShuttle.gameObject.transform.position = shuttleSpots[1].transform.position;
                 shuttleRight2.gameObject.transform.position = shuttleSpots[3].transform.position;
+                activeRightShuttle.Idle();
+                shuttleRight2.IdleStatic();
             }
 
         }
@@ -189,12 +211,12 @@ public class SwipeReaction : MonoBehaviour
             } 
             else if (value == 1)
             {
-                shuttleLeft.WrongMove();
+                activeLeftShuttle.WrongMove();
                 ProcessIncorrectSwipe();
             }
             else if (value == 2)
             {
-                shuttleRight.WrongMove();
+                activeRightShuttle.WrongMove();
                 ProcessIncorrectSwipe();
             }
             else if (value != 3 && value != 4 && value != 6 && value != 7)
