@@ -171,8 +171,8 @@ public class SwipeReaction : MonoBehaviour
                 }
                 if(value == 5)
                 {
-                    shuttleLeft.WrongMove();
-                    shuttleRight.WrongMove();
+                    activeLeftShuttle.WrongMove();
+                    activeRightShuttle.WrongMove();
                 }
                 ProcessIncorrectSwipe();
             }
