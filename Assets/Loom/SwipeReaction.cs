@@ -41,13 +41,26 @@ public class SwipeReaction : MonoBehaviour
         colorLeft2 = GlobalVar.color3;
         colorRight2 = GlobalVar.color4;
 
-        shuttleLeft.gameObject.transform.position = shuttleSpots[2].transform.position;
-        shuttleRight.gameObject.transform.position = shuttleSpots[3].transform.position;
-        shuttleLeft2.gameObject.transform.position = shuttleSpots[0].transform.position;
-        shuttleRight2.gameObject.transform.position = shuttleSpots[1].transform.position;
+        if(GlobalVar.fromMenu) {
 
-        activeLeftShuttle = shuttleLeft2;
-        activeRightShuttle = shuttleRight2;
+            shuttleLeft.gameObject.transform.position = shuttleSpots[2].transform.position;
+            shuttleRight.gameObject.transform.position = shuttleSpots[3].transform.position;
+            shuttleLeft2.gameObject.transform.position = shuttleSpots[0].transform.position;
+            shuttleRight2.gameObject.transform.position = shuttleSpots[1].transform.position;
+            activeLeftShuttle = shuttleLeft2;
+            activeRightShuttle = shuttleRight2;
+        } 
+        else
+        {
+            shuttleLeft.gameObject.transform.position = shuttleSpots[0].transform.position;
+            shuttleRight.gameObject.transform.position = shuttleSpots[1].transform.position;
+            shuttleLeft2.gameObject.transform.position = shuttleSpots[2].transform.position;
+            shuttleRight2.gameObject.transform.position = shuttleSpots[3].transform.position;
+            activeLeftShuttle = shuttleLeft;
+            activeRightShuttle = shuttleRight;
+        }
+
+
         //shuttleLeft2.IdleStatic();
         //shuttleRight2.IdleStatic();
 

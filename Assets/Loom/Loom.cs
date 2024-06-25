@@ -45,6 +45,10 @@ public class Loom : MonoBehaviour
         colorLeft.a = 0.5f;
         colorRight = GlobalVar.color2;
         colorRight.a = 0.5f;
+        colorLeft2 = GlobalVar.color3;
+        colorLeft2.a = 0.5f;
+        colorRight2 = GlobalVar.color4;
+        colorRight2.a = 0.5f;
 
         //colors = new List<Color>();
         colorPairs = new List<ColorPair>();
