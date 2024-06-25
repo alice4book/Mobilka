@@ -175,8 +175,11 @@ public class SwipeDetection : MonoBehaviour
 
     private void CountSwipeDir(Vector3 touchStart)
     {
+        float angle = Mathf.Atan2(Mathf.Abs(_swipeVector.y), Mathf.Abs(_swipeVector.x)) * Mathf.Rad2Deg;
+
         // Only left & right
-        if (Mathf.Abs(_swipeVector.x) > Mathf.Abs(_swipeVector.y)){
+        if (angle <= 60)
+        {
         // Ruch w lewo lub w prawo
             if (_swipeVector.x > 0)
             {
