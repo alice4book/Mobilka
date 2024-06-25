@@ -17,7 +17,10 @@ public class Shuttle : MonoBehaviour
     private int correctMoveHalfAnimation;
 
 
-    public bool leftShuttle;
+    public bool leftBottomShuttle;
+    public bool leftTopShuttle;
+    public bool rightBottomShuttle;
+    public bool rightTopShuttle;
     
     // Start is called before the first frame update
     void Start()
@@ -26,13 +29,17 @@ public class Shuttle : MonoBehaviour
 
         _audioSource = GetComponent<AudioSource>();
 
-        if (leftShuttle) {
+        if (leftBottomShuttle) {
             GetComponentInChildren<SpriteRenderer>().color = GlobalVar.color1;
-        } else {
+        } else if (rightBottomShuttle) {
             GetComponentInChildren<SpriteRenderer>().color = GlobalVar.color2;
+        } else if (leftTopShuttle) {
+            GetComponentInChildren<SpriteRenderer>().color = GlobalVar.color3;
+        } else {
+            GetComponentInChildren<SpriteRenderer>().color = GlobalVar.color4;
         }
 
-        if(leftShuttle) {
+        if(leftBottomShuttle || leftTopShuttle) {
             wrongMoveAnimation = Animator.StringToHash("WrongMoveLeftShuttle");
             correctMoveAnimation = Animator.StringToHash("CorrectMoveLeftShuttle");
             idleAnimation = Animator.StringToHash("IdleLeftShuttle");

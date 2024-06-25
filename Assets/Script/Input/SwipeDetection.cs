@@ -48,13 +48,28 @@ public class SwipeDetection : MonoBehaviour
         if(_bDouble && Touch.activeTouches.Count < 2)
         {
             //testText2.text = "double LESS";
-            DoubleSwipeDir();
-            _primary = new Touch();
-            _secondary = new Touch();
-            _bSecond = true;
-            _bDouble = false;
+            _swipeVector = _primary.screenPosition - _primary.startScreenPosition;
+            _swipeVector2nd = _secondary.screenPosition - _secondary.startScreenPosition;
+            if(Mathf.Abs(_swipeVector.y) < Mathf.Abs(_swipeVector.x) && Mathf.Abs(_swipeVector2nd.y) < Mathf.Abs(_swipeVector2nd.x))
+            {
+                DoubleSwipeDir();
+                _primary = new Touch();
+                _secondary = new Touch();
+                _bSecond = true;
+                _bDouble = false;
+            } 
+            else 
+            {
+                OnSwipeDelegate?.Invoke(3);
+                OnSwipeDelegate?.Invoke(6);
+                _primary = new Touch();
+                _secondary = new Touch();
+                _bSecond = true;
+                _bDouble = false;
+            }
             
         } 
+
         /*
         else {
             if(_bDouble) {
@@ -99,7 +114,7 @@ public class SwipeDetection : MonoBehaviour
                 _swipeVector = touch.screenPosition - touch.startScreenPosition;
                 if (_swipeVector.magnitude > _minSwipeLength)
                 {
-                    CountSwipeDir();
+                    CountSwipeDir(touch.startScreenPosition);
                     _swipeVector = Vector3.zero;
                 }
             }
@@ -158,22 +173,22 @@ public class SwipeDetection : MonoBehaviour
         }
     }
 
-    private void CountSwipeDir()
+    private void CountSwipeDir(Vector3 touchStart)
     {
         // Only left & right
-        //if (Mathf.Abs(_swipeVector.x) > Mathf.Abs(_swipeVector.y)){
+        if (Mathf.Abs(_swipeVector.x) > Mathf.Abs(_swipeVector.y)){
         // Ruch w lewo lub w prawo
-        if (_swipeVector.x > 0)
-        {
-            // Right
-            OnSwipeDelegate?.Invoke(1);
-        }
-        else
-        {
-            // Left
-            OnSwipeDelegate?.Invoke(2);
-        }
-        /*
+            if (_swipeVector.x > 0)
+            {
+                // Right
+                OnSwipeDelegate?.Invoke(1);
+            }
+            else
+            {
+                // Left
+                OnSwipeDelegate?.Invoke(2);
+            }
+        
         }
         else
         {
@@ -181,14 +196,33 @@ public class SwipeDetection : MonoBehaviour
             if (_swipeVector.y > 0)
             {
                 // Up
-                OnSwipe?.Invoke(3);
+                if (touchStart.x < Screen.width / 2)
+                {
+                    //left part of screen
+                    OnSwipeDelegate?.Invoke(3);
+                }
+                else
+                {
+                    //right part of screen
+                    OnSwipeDelegate?.Invoke(6);
+                }
+                
             }
             else
             {
                 // Down
-                OnSwipe?.Invoke(4);
+                if (touchStart.x < Screen.width / 2)
+                {
+                    //left part of screen
+                    OnSwipeDelegate?.Invoke(4);
+                }
+                else
+                {
+                    //right part of screen
+                    OnSwipeDelegate?.Invoke(7);
+                }
             }
         }
-        */
+        
     }
 }

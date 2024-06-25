@@ -20,7 +20,9 @@ public class Loom : MonoBehaviour
     public List<ColorPair> colorPairs;
     
     [SerializeField] Color colorLeft;
+    [SerializeField] Color colorLeft2;
     [SerializeField] Color colorRight;
+    [SerializeField] Color colorRight2;
 
     [SerializeField] public Color outlineBase;
 
@@ -113,7 +115,7 @@ public class Loom : MonoBehaviour
         }
 
         for(int i = firstNumber; i < 1000; i++) {
-            int random = Random.Range(0,5);
+            int random = Random.Range(0,12);
             switch(random) 
             {
                 //ColorPair = (left, left);
@@ -139,10 +141,58 @@ public class Loom : MonoBehaviour
                     //tmpColor = blueColor;
                     tmpColorPair = new ColorPair(colorRight, colorRight);
                     break;
-                //ColorPair = (left, right);
+  
+                //ColorPair = (left, left);
                 case 4:
+                    //tmpColor = redColor;
+                    tmpColorPair = new ColorPair(colorLeft2, colorLeft2);
+                    break;
+
+                //ColorPair = (left, left);
+                case 5:
+                    //tmpColor = blueColor;
+                    tmpColorPair = new ColorPair(colorLeft2, colorLeft2);
+                    break;
+
+                //ColorPair = (right, right);
+                case 6:
+                    //tmpColor = redColor;
+                    tmpColorPair = new ColorPair(colorRight2, colorRight2);
+                    break;
+
+                //ColorPair = (right, right);
+                case 7:
+                    //tmpColor = blueColor;
+                    tmpColorPair = new ColorPair(colorRight2, colorRight2);
+                    break;
+                //ColorPair = (left, right);
+                case 8:
+                    //tmpColor = blueColor;
+                    tmpColorPair = new ColorPair(colorLeft2, colorRight2);
+                    break;
+                
+                //ColorPair = (left, right);
+                case 9:
                     //tmpColor = blueColor;
                     tmpColorPair = new ColorPair(colorLeft, colorRight);
+                    break;
+
+                //ColorPair = (left, right);
+                case 10:
+                    //tmpColor = blueColor;
+                    tmpColorPair = new ColorPair(colorLeft, colorRight2);
+                    break;
+                
+                //ColorPair = (left, right);
+                case 11:
+                    //tmpColor = blueColor;
+                    tmpColorPair = new ColorPair(colorLeft2, colorRight);
+                    break;
+                
+                //ColorPair = (left, right);
+                case 12:
+                    //tmpColor = blueColor;
+                    tmpColorPair = new ColorPair(colorLeft2, colorRight2);
                     break;
 
                 //ColorPair = (left, left);
