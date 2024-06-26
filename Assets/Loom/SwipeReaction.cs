@@ -86,6 +86,10 @@ public class SwipeReaction : MonoBehaviour
 
     private void HandleSwipeDirection(int value)
     {
+
+        Debug.Log("swipereaction");
+        Debug.Log(value);
+
         Color lineLeftColor = loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color;
         Color lineRightColor = loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color;
 
@@ -139,31 +143,26 @@ public class SwipeReaction : MonoBehaviour
         if (currentLeftColorVec == currentRightColorVec)
         {
 
-
             // Single swipe needed
-            if ((value == 1 && currentLeftColorVec == leftColorVec && activeLeftShuttle == shuttleLeft) || (value == 2 && currentLeftColorVec == rightColorVec && activeRightShuttle == shuttleRight))
+            if ((value == 1 && currentLeftColorVec == leftColorVec && activeLeftShuttle == shuttleLeft))
             {
                 // Correct single swipe, value = direction
-
-                if(value == 1 && currentLeftColorVec == leftColorVec) {
-                    shuttleLeft.CorrectMove();
-                }
-                if(value == 2 && currentLeftColorVec == rightColorVec) {
-                    shuttleRight.CorrectMove();
-                }
-
+                shuttleLeft.CorrectMove();
+                ProcessCorrectSwipe();           
+            }
+            else if(value == 2 && currentLeftColorVec == rightColorVec && activeRightShuttle == shuttleRight)
+            {
+                shuttleRight.CorrectMove();
                 ProcessCorrectSwipe();
             }
-            else if((value == 1 && currentLeftColorVec == leftColorVec2 && activeLeftShuttle == shuttleLeft2) || (value == 2 && currentLeftColorVec == rightColorVec2 && activeRightShuttle == shuttleRight2)) {
-
-                if(value == 1 && currentLeftColorVec == leftColorVec2) {
-                    //Debug.Log("HERE");
-                    shuttleLeft2.CorrectMove();
-                }
-                if(value == 2 && currentLeftColorVec == rightColorVec2) {
-                    shuttleRight2.CorrectMove();
-                }
-                
+            else if(value == 1 && currentLeftColorVec == leftColorVec2 && activeLeftShuttle == shuttleLeft2)
+            {
+                shuttleLeft2.CorrectMove();
+                ProcessCorrectSwipe();
+            }
+            else if(value == 2 && currentLeftColorVec == rightColorVec2 && activeRightShuttle == shuttleRight2) 
+            {
+                shuttleRight2.CorrectMove();
                 ProcessCorrectSwipe();
             }
             else if (value != 3 && value != 4 && value != 6 && value != 7)
@@ -172,16 +171,16 @@ public class SwipeReaction : MonoBehaviour
                 if(value == 1 && currentLeftColorVec != leftColorVec && activeLeftShuttle == shuttleLeft) {
                     shuttleLeft.WrongMove();
                 }
-                if(value == 1 && currentLeftColorVec != leftColorVec2 && activeLeftShuttle == shuttleLeft2) {
+                else if(value == 1 && currentLeftColorVec != leftColorVec2 && activeLeftShuttle == shuttleLeft2) {
                     shuttleLeft2.WrongMove();
                 }
-                if(value == 2 && currentLeftColorVec != rightColorVec && activeRightShuttle == shuttleRight) {
+                else if(value == 2 && currentLeftColorVec != rightColorVec && activeRightShuttle == shuttleRight) {
                     shuttleRight.WrongMove();
                 }
-                if(value == 2 && currentLeftColorVec != rightColorVec2 && activeRightShuttle == shuttleRight2) {
+                else if(value == 2 && currentLeftColorVec != rightColorVec2 && activeRightShuttle == shuttleRight2) {
                     shuttleRight2.WrongMove();
                 }
-                if(value == 5)
+                else if(value == 5)
                 {
                     activeLeftShuttle.WrongMove();
                     activeRightShuttle.WrongMove();
@@ -253,6 +252,8 @@ public class SwipeReaction : MonoBehaviour
                 swipeCoroutine = StartCoroutine(ResetCorrectSwipesAfterDelay(swipeDelay, loom.lines[0].gameObject));
             }
         }
+
+        Debug.Log("end of swipe reaction");
     }
 
     IEnumerator ResetCorrectSwipesAfterDelay(float delay, GameObject loomLine)

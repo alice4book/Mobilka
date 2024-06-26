@@ -82,7 +82,7 @@ public static class GlobalVar
             int comboLower = (combo/10) * 10;
             comboMultiplier = (comboLower / 10) + 1;
         }
-        Debug.Log(comboMultiplier);
+        //Debug.Log(comboMultiplier);
 
     }
 

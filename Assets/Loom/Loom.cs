@@ -28,7 +28,7 @@ public class Loom : MonoBehaviour
 
     //lerp
     public float moveDistance = 0.5f;
-    public float moveDuration = 0.2f;
+    public float moveDuration = 0.1f;
     private int lineNr = 0;
 
     public List<LoomLine> linesToDestroy;
@@ -237,7 +237,7 @@ public class Loom : MonoBehaviour
             SpawnLine();
             linesToDestroy.Add(lines[0]);
             StartCoroutine(MoveLinesCoroutine());
-            lines.RemoveAt(0);
+            //lines.RemoveAt(0);
             //DestroyLines();
             //lines[0].CurrentLine();
         }
@@ -270,6 +270,7 @@ public class Loom : MonoBehaviour
         }
         else
         {
+            lines.RemoveAt(0);
             lines[0].CurrentLine();
             DestroyLines();
         }
