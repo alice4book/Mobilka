@@ -226,6 +226,7 @@ public class Loom : MonoBehaviour
 
     public void MoveLines()
     {
+        //Debug.Log("Move lines");
         if (isMoving)
         {
             newMoveRequest = true;
@@ -241,10 +242,12 @@ public class Loom : MonoBehaviour
             //DestroyLines();
             //lines[0].CurrentLine();
         }
+        //Debug.Log("end move lines");
     }
 
     private IEnumerator MoveLinesCoroutine()
     {
+        //Debug.Log("coroutine");
         Vector3 startPosition = parentOfLines.transform.position;
         Vector3 endPosition = new Vector3(startPosition.x, startPosition.y - distanceToMove, startPosition.z);
         float elapsedTime = 0;
@@ -274,6 +277,7 @@ public class Loom : MonoBehaviour
             lines[0].CurrentLine();
             DestroyLines();
         }
+        //Debug.Log("end coroutine");
     }
 
     void SpawnLine()

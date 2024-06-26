@@ -87,8 +87,8 @@ public class SwipeReaction : MonoBehaviour
     private void HandleSwipeDirection(int value)
     {
 
-        Debug.Log("swipereaction");
-        Debug.Log(value);
+        //Debug.Log("swipereaction");
+        //Debug.Log(value);
 
         Color lineLeftColor = loom.lines[0].lineLeft.GetComponent<SpriteRenderer>().color;
         Color lineRightColor = loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color;
@@ -104,7 +104,7 @@ public class SwipeReaction : MonoBehaviour
 
         if(value == 3 || value == 4)
         {
-            Debug.Log("changed left");
+            //Debug.Log("changed left");
             if(activeLeftShuttle == shuttleLeft) {
                 activeLeftShuttle = shuttleLeft2;
                 activeLeftShuttle.gameObject.transform.position = shuttleSpots[0].transform.position;
@@ -119,11 +119,11 @@ public class SwipeReaction : MonoBehaviour
                 shuttleLeft2.IdleStatic();
             }
             
-            Debug.Log(activeLeftShuttle);
+            //Debug.Log(activeLeftShuttle);
         } 
         else if(value == 6 || value == 7)
         {
-            Debug.Log("changed right");
+            //Debug.Log("changed right");
             if(activeRightShuttle == shuttleRight) {
                 activeRightShuttle = shuttleRight2;
                 activeRightShuttle.gameObject.transform.position = shuttleSpots[1].transform.position;
@@ -147,23 +147,23 @@ public class SwipeReaction : MonoBehaviour
             if ((value == 1 && currentLeftColorVec == leftColorVec && activeLeftShuttle == shuttleLeft))
             {
                 // Correct single swipe, value = direction
-                shuttleLeft.CorrectMove();
-                ProcessCorrectSwipe();           
+                //shuttleLeft.CorrectMove();
+                ProcessCorrectSwipe(value);           
             }
             else if(value == 2 && currentLeftColorVec == rightColorVec && activeRightShuttle == shuttleRight)
             {
-                shuttleRight.CorrectMove();
-                ProcessCorrectSwipe();
+                //shuttleRight.CorrectMove();
+                ProcessCorrectSwipe(value);
             }
             else if(value == 1 && currentLeftColorVec == leftColorVec2 && activeLeftShuttle == shuttleLeft2)
             {
-                shuttleLeft2.CorrectMove();
-                ProcessCorrectSwipe();
+                //shuttleLeft2.CorrectMove();
+                ProcessCorrectSwipe(value);
             }
             else if(value == 2 && currentLeftColorVec == rightColorVec2 && activeRightShuttle == shuttleRight2) 
             {
-                shuttleRight2.CorrectMove();
-                ProcessCorrectSwipe();
+                //shuttleRight2.CorrectMove();
+                ProcessCorrectSwipe(value);
             }
             else if (value != 3 && value != 4 && value != 6 && value != 7)
             {
@@ -193,37 +193,37 @@ public class SwipeReaction : MonoBehaviour
             // Double swipe
             if (value == 5)
             {
-                //color1 & color2
+                //color1 & color3
                 if(currentLeftColorVec == leftColorVec && currentRightColorVec == rightColorVec && activeLeftShuttle == shuttleLeft && activeRightShuttle == shuttleRight)
                 {
-                    shuttleLeft.CorrectHalfMove();
-                    shuttleRight.CorrectHalfMove();
+                    //shuttleLeft.CorrectHalfMove();
+                    //shuttleRight.CorrectHalfMove();
                     // Both swipes are correct
-                    ProcessCorrectSwipe();
+                    ProcessCorrectSwipe(13);
                 }
                 //color1 & color4
                 else if(currentLeftColorVec == leftColorVec && currentRightColorVec == rightColorVec2 && activeLeftShuttle == shuttleLeft && activeRightShuttle == shuttleRight2)
                 {
-                    shuttleLeft.CorrectHalfMove();
-                    shuttleRight2.CorrectHalfMove();
+                    //shuttleLeft.CorrectHalfMove();
+                    //shuttleRight2.CorrectHalfMove();
                     // Both swipes are correct
-                    ProcessCorrectSwipe();
+                    ProcessCorrectSwipe(14);
                 }
                 //color2 & color3
                 else if(currentLeftColorVec == leftColorVec2 && currentRightColorVec == rightColorVec && activeLeftShuttle == shuttleLeft2 && activeRightShuttle == shuttleRight)
                 {
-                    shuttleLeft2.CorrectHalfMove();
-                    shuttleRight.CorrectHalfMove();
+                    //shuttleLeft2.CorrectHalfMove();
+                    //shuttleRight.CorrectHalfMove();
                     // Both swipes are correct
-                    ProcessCorrectSwipe();
+                    ProcessCorrectSwipe(23);
                 }
-                //color2 & color3
+                //color2 & color4
                 else if(currentLeftColorVec == leftColorVec2 && currentRightColorVec == rightColorVec2 && activeLeftShuttle == shuttleLeft2 && activeRightShuttle == shuttleRight2)
                 {
-                    shuttleLeft2.CorrectHalfMove();
-                    shuttleRight2.CorrectHalfMove();
+                    //shuttleLeft2.CorrectHalfMove();
+                    //shuttleRight2.CorrectHalfMove();
                     // Both swipes are correct
-                    ProcessCorrectSwipe();
+                    ProcessCorrectSwipe(24);
                 }
                 else
                 {
@@ -253,7 +253,7 @@ public class SwipeReaction : MonoBehaviour
             }
         }
 
-        Debug.Log("end of swipe reaction");
+        //Debug.Log("end of swipe reaction");
     }
 
     IEnumerator ResetCorrectSwipesAfterDelay(float delay, GameObject loomLine)
@@ -272,8 +272,11 @@ public class SwipeReaction : MonoBehaviour
         }
     }
 
-    void ProcessCorrectSwipe()
+    void ProcessCorrectSwipe(int value)
     {
+
+
+        //Debug.Log("process correct");
         GlobalVar.IncreaseLinesMade();
         GlobalVar.IncreaseCombo();
         //GlobalVar.CalculateComboMultiplier();
@@ -293,8 +296,37 @@ public class SwipeReaction : MonoBehaviour
         loom.lines[0].lineRight.GetComponent<SpriteRenderer>().color = new Color(lineRightColor.r, lineRightColor.g, lineRightColor.b, 1.0f);
         loom.lines[0].outlineL.GetComponent<SpriteRenderer>().color = new Color(outlineLeftColor.r, outlineLeftColor.g, outlineLeftColor.b, 1.0f);
         loom.lines[0].outlineR.GetComponent<SpriteRenderer>().color = new Color(outlineRightColor.r, outlineRightColor.g, outlineRightColor.b, 1.0f);
+        if(value == 1)
+        {
+            activeLeftShuttle.CorrectMove();
+        }
+        else if(value == 2)
+        {
+            activeRightShuttle.CorrectMove();
+        }
+        else if(value == 13)
+        {
+            shuttleLeft.CorrectHalfMove();
+            shuttleRight.CorrectHalfMove();
+        }
+        else if(value == 14)
+        {
+            shuttleLeft.CorrectHalfMove();
+            shuttleRight2.CorrectHalfMove();
+        }
+        else if(value == 23)
+        {
+            shuttleLeft2.CorrectHalfMove();
+            shuttleRight.CorrectHalfMove();
+        }
+        else if(value == 24)
+        {
+            shuttleLeft2.CorrectHalfMove();
+            shuttleRight2.CorrectHalfMove();
+        }
         loom.MoveLines();
         textMesh.text = GlobalVar.gameScore.ToString();
+        //Debug.Log("end process correct");
     }
 
     void ProcessIncorrectSwipe()
