@@ -34,6 +34,7 @@ public class Loom : MonoBehaviour
     public List<LoomLine> linesToDestroy;
 
     bool isMoving = false;
+    bool newMoveRequest = false;
 
     public float distanceToMove = 0.4f;
 
@@ -225,7 +226,11 @@ public class Loom : MonoBehaviour
 
     public void MoveLines()
     {
-        if(!isMoving) 
+        if (isMoving)
+        {
+            newMoveRequest = true;
+        }
+        else
         {
             isMoving = true;
             lines[0].Idle();
@@ -233,8 +238,8 @@ public class Loom : MonoBehaviour
             linesToDestroy.Add(lines[0]);
             StartCoroutine(MoveLinesCoroutine());
             lines.RemoveAt(0);
-            DestroyLines();
-            lines[0].CurrentLine();
+            //DestroyLines();
+            //lines[0].CurrentLine();
         }
     }
 
@@ -246,6 +251,10 @@ public class Loom : MonoBehaviour
 
         while (elapsedTime < moveDuration)
         {
+            if(newMoveRequest)
+            {
+                break;
+            }
             parentOfLines.transform.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / moveDuration);
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -253,6 +262,17 @@ public class Loom : MonoBehaviour
 
         parentOfLines.transform.position = endPosition;
         isMoving = false;
+
+        if (newMoveRequest)
+        {
+            newMoveRequest = false;
+            MoveLines();
+        }
+        else
+        {
+            lines[0].CurrentLine();
+            DestroyLines();
+        }
     }
 
     void SpawnLine()
