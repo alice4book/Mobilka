@@ -4,11 +4,11 @@ using UnityEngine;
 
 public static class GlobalVar
 {
-    public static Color color1 = new Color(121.0f / 255, 42.0f / 255, 255.0f / 255);
-    public static Color color2 = new Color(255.0f / 255, 236.0f / 255, 0.0f / 255);
+    public static Color color1 = new Color(245.0f / 240, 242.0f / 255, 0);
+    public static Color color2 = new Color(151.0f / 255, 1.0f / 255, 244.0f / 255);
 
-    public static Color color3 = new Color(1.0f, 0.5f, 0.0f);
-    public static Color color4 = new Color(0.0f, 0.95f, 1.0f);
+    public static Color color3 = new Color(2.0f / 255, 0 , 244.0f / 255);
+    public static Color color4 = new Color(30.0f / 255, 245.0f / 255, 1.0f / 255);
 
     public static int coins = 3000;
 
@@ -47,7 +47,13 @@ public static class GlobalVar
     static GlobalVar()
     {
         listUnlocked = new List<bool>{
-        true, true, true, true, false, false, false, false, false
+        true, false, false,
+        true, false, false,
+        true, false, false,
+        true, false, false,
+        false, false, false,
+        false, false, false,
+        false, false, false
         };
     }
 
