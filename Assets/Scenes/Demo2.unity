@@ -2070,10 +2070,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1813740146}
     m_Modifications:
+    - target: {fileID: 920066117584970818, guid: d0f068c5bd78c3548b97a8abe961efd3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1082295644149021892, guid: d0f068c5bd78c3548b97a8abe961efd3, type: 3}
       propertyPath: _audio
       value: 
       objectReference: {fileID: 1903233908}
+    - target: {fileID: 1980670391768211189, guid: d0f068c5bd78c3548b97a8abe961efd3, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980670391768211189, guid: d0f068c5bd78c3548b97a8abe961efd3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2425176035848434983, guid: d0f068c5bd78c3548b97a8abe961efd3, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 2019220223
@@ -2092,7 +2104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4722090145831643859, guid: d0f068c5bd78c3548b97a8abe961efd3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 4722090145831643859, guid: d0f068c5bd78c3548b97a8abe961efd3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2125,6 +2137,10 @@ PrefabInstance:
     - target: {fileID: 6558727593763183785, guid: d0f068c5bd78c3548b97a8abe961efd3, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 2019220223
+      objectReference: {fileID: 0}
+    - target: {fileID: 8495386692525378798, guid: d0f068c5bd78c3548b97a8abe961efd3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
